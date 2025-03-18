@@ -122,31 +122,3 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .depoimentos-slider {
-        height: 450px;
-    }
-    
-    .back-to-top {
-        width: 40px;
-        height: 40px;
-        bottom: 20px;
-        left: 20px;
-        font-size: 16px;
-    }
-    
-    .menu a, .btn, button, input[type="submit"] {
-        padding: 12px 20px;
-        min-height: 44px;
-    }
-    
-    .form-group {
-        margin-bottom: 15px;
-    }
-    
-    input, select, textarea {
-        font-size: 16px; /* Prevents auto-zoom on iOS */
-    }
-}

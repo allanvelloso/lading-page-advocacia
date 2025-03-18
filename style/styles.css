@@ -82,7 +82,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--secondary-color);
+    background-color:var(--secondary-color);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     padding: 15px 0;
@@ -149,105 +149,7 @@ nav .menu li a {
     padding: 5px 0;
 }
 
-/* Remover estilos duplicados mais abaixo no arquivo */
-.scrolled {
-    padding: 10px 0;
-    background-color: white;
-}
-
-/* Ajustes responsivos para a navegação */
-@media (max-width: 1100px) {
-    .logo h1 {
-        font-size: 0.85rem;
-    }
-    
-    nav .menu li {
-        margin-left: 10px;
-    }
-    
-    nav .menu li a {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 992px) {
-    header .container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .logo {
-        margin-bottom: 10px;
-    }
-    
-    nav .menu {
-        justify-content: center;
-    }
-    
-    nav .menu li:first-child {
-        margin-left: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-    
-    header .container {
-        flex-direction: row;
-        text-align: left;
-    }
-    
-    .logo {
-        margin-bottom: 0;
-    }
-    
-    nav .menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: white;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 80px 20px 20px;
-        transition: right 0.3s ease;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
-    }
-    
-    nav .menu.active {
-        right: 0;
-    }
-    
-    nav .menu li {
-        margin: 0 0 15px;
-        width: 100%;
-    }
-    
-    nav .menu li a {
-        display: block;
-        padding: 8px 0;
-    }
-    
-    nav .menu li a.btn-contato {
-        text-align: center;
-        margin-top: 10px;
-        
-    }
-}
-.scrolled {
-    padding: 10px 0;
-    background-color: white;
-}
+/* Removendo media queries e seus conteúdos */
 
 header .container {
     display: flex;
@@ -759,7 +661,7 @@ background-color: var(--primary-color);
     
 }
 
-.required-indicator {
+.required-indicatory {
     color: var(--secondary-color);
     font-weight: 500;
     margin-bottom: 10px;
@@ -851,87 +753,7 @@ footer {
     text-align: center;
 }
 
-/* Responsividade */
-@media (max-width: 992px) {
-    .hero-content,
-    .sobre-content,
-    .contato-container,
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .areas-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .reasons-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .hero-image {
-        order: -1;
-    }
-    
-    .sobre-image {
-        margin-top: 30px;
-    }
-    
-    .contato-info {
-        margin-bottom: 30px;
-    }
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-    
-    .menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: white;
-        flex-direction: column;
-        padding: 80px 20px 20px;
-        transition: right 0.3s ease;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .menu.active {
-        right: 0;
-    }
-    
-    .menu li {
-        margin: 0 0 20px;
-    }
-    
-    .services-grid,
-    .areas-grid,
-    .strategy-grid,
-    .reasons-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
-    }
-}
-
+/* Removendo a seção de media queries no final do arquivo */
 /* Advogados Section - Versão Sobre Mim */
 .advogados h2 {
     text-align: center;
@@ -1011,22 +833,4 @@ footer {
 .advogado-card .social-icons a:hover {
     background-color: var(--secondary-color);
     transform: translateY(-3px);
-}
-
-/* Responsividade para a seção Sobre Mim */
-@media (max-width: 768px) {
-    .advogado-card {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        text-align: center;
-    }
-    
-    .advogado-img {
-        max-width: 250px;
-        margin: 0 auto 1.5rem;
-    }
-    
-    .social-icons {
-        justify-content: center;
-    }
 }

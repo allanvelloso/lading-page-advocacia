@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof Forms !== 'undefined') Forms.init();
     if (typeof Animations !== 'undefined') Animations.init();
     if (typeof WhatsApp !== 'undefined') WhatsApp.init();
-    if (typeof CookieConsent !== 'undefined') CookieConsent.init();
+    if (typeof CookieConsent !== 'undefined') CookieConsent.init();u
     if (typeof ExitIntent !== 'undefined') ExitIntent.init();
     if (typeof Performance !== 'undefined') Performance.init();
     if (typeof GoogleMaps !== 'undefined') GoogleMaps.init();
@@ -34,15 +34,7 @@ menuLinks.forEach(link => {
     });
 });
 
-// Header scroll effect
-const header = document.querySelector('header');
-window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
+// Removido o código de efeito de scroll do header
 
 // Rolagem suave para links de navegação
 implementSmoothScrolling();
@@ -58,7 +50,7 @@ setupTestimonialCarousel();
 
 // Implementar carregamento preguiçoso para imagens
 setupLazyLoading();
-});
+// }); <- Remover este fechamento extra
 
 // Implementação de rolagem suave
 function implementSmoothScrolling() {
