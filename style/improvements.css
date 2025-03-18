@@ -1,0 +1,105 @@
+/* Estilos para o botão voltar ao topo */
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color, #1a1a1a);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: var(--secondary-color, #333);
+    transform: translateY(-3px);
+}
+
+/* Estilos para o carrossel de depoimentos */
+.depoimentos-slider {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+.depoimento-card {
+    position: absolute;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+/* Estilos para validação de formulário */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color, #1a1a1a);
+}
+
+input.error, textarea.error, select.error {
+    border-color: red;
+}
+
+/* Animações de carregamento */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Melhorias para dispositivos móveis */
+@media (max-width: 768px) {
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        left: 20px;
+        font-size: 16px;
+    }
+    
+    /* Elementos mais fáceis de tocar em dispositivos móveis */
+    .menu a, .btn, button, input[type="submit"] {
+        padding: 12px 20px;
+        min-height: 44px;
+    }
+    
+    /* Espaçamento melhorado para formulários em dispositivos móveis */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    input, select, textarea {
+        font-size: 16px; /* Evita zoom automático em iOS */
+    }
+}
+
+/* Acessibilidade - foco visível */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--primary-color, #1a1a1a);
+    outline-offset: 2px;
+}
+
+/* Animações para elementos da página */
+.service-card, .area-card, .reason-card, .strategy-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover, .area-card:hover, .reason-card:hover, .strategy-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
