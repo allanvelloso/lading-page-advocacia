@@ -1030,3 +1030,458 @@ footer {
         justify-content: center;
     }
 }
+/* Arquivo de Media Queries para Responsividade */
+
+/* Regra global para prevenir scroll horizontal */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Tablets e dispositivos médios (até 992px) */
+@media screen and (max-width: 992px) {
+    .container {
+        width: 90%;
+        padding: 0 15px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Ajustes na seção hero */
+    .hero-content {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .hero-text {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 0;
+    }
+    
+    .hero-image {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Ajustes nas seções de serviços e áreas */
+    .services-grid, .areas-grid, .reasons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        width: 100%;
+    }
+    
+    /* Ajustes na seção sobre */
+    .sobre-content {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .sobre-text, .sobre-image {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .sobre-image {
+        margin-top: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Ajustes na seção de estatísticas */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        width: 100%;
+    }
+    
+    /* Ajustes na seção de contato */
+    .contato-container {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .contato-info, .contato-form {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .contato-info {
+        margin-bottom: 30px;
+    }
+    
+    /* Ajustes no footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .footer-logo, .footer-links, .footer-social {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* Garantir que todas as seções respeitem a largura da tela */
+    section, header, footer {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Dispositivos móveis (até 768px) */
+@media screen and (max-width: 768px) {
+    /* Ajustes no header e navegação */
+    header .container {
+        flex-direction: column;
+        padding: 15px 0;
+        width: 100%;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .logo img {
+        max-width: 80%;
+        height: auto;
+    }
+    
+    .menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        padding: 0;
+    }
+    
+    .menu.active {
+        display: flex;
+    }
+    
+    .menu li {
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    .menu-toggle {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        align-self: flex-end;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+    
+    /* Ajustes nas seções de serviços e áreas */
+    .services-grid, .areas-grid, .reasons-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    
+    /* Ajustes na seção de estatísticas */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    
+    /* Ajustes na seção de estratégia */
+    .strategy-grid {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .strategy-item {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
+    /* Ajustes na seção de advogados */
+    .advogado-card {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .advogado-img, .advogado-info {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .advogado-img {
+        margin-bottom: 20px;
+    }
+    
+    .advogado-img img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Ajustes nos depoimentos */
+    .depoimento-card {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .depoimentos-slider {
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    /* Ajustes no formulário de contato */
+    .form-group {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    
+    input, select, textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Tratamento específico para imagens */
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media screen and (max-width: 480px) {
+    .hero-image, .sobre-image {
+        display: none;
+    }
+    
+    .hero-text, .sobre-text {
+        text-align: center;
+        padding: 0 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    h1, h2 {
+        font-size: 28px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+    
+    p {
+        font-size: 14px;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    
+    /* Ajustes adicionais para evitar overflow */
+    .container {
+        width: 95%;
+        padding: 0 10px;
+    }
+    
+    section {
+        padding: 30px 0;
+    }
+}
+
+/* Ajustes para telas grandes (acima de 1200px) */
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+}
+
+/* Melhorias de acessibilidade para telas pequenas */
+@media screen and (max-width: 768px) {
+    /* Aumentar área de toque para links e botões */
+    a, button, .btn, input[type="submit"] {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Aumentar tamanho da fonte para melhor legibilidade */
+    body {
+        font-size: 16px;
+    }
+    
+    /* Aumentar espaçamento vertical */
+    section {
+        padding: 40px 0;
+    }
+}
+/* Base styles for full width and proper box model */
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color, #1a1a1a);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: var(--secondary-color, #333);
+    transform: translateY(-3px);
+}
+
+/* Testimonials carousel */
+.depoimentos-slider {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+.depoimento-card {
+    position: absolute;
+    width: 100%;
+    transition: all 0.5s ease;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #c8c8c8;
+    color: var(--primare-color);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.depoimento-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Star ratings */
+.rating .fas.fa-star {
+    color: #ffd700; /* Golden color for stars */
+}
+
+/* Form styles */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color, #1a1a1a);
+}
+
+input.error, textarea.error, select.error {
+    border-color: red;
+}
+
+/* Accessibility - visible focus */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--primary-color, #1a1a1a);
+    outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Card hover effects */
+.service-card, .area-card, .reason-card, .strategy-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover, .area-card:hover, .reason-card:hover, .strategy-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .depoimentos-slider {
+        height: 450px;
+    }
+    
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        left: 20px;
+        font-size: 16px;
+    }
+    
+    .menu a, .btn, button, input[type="submit"] {
+        padding: 12px 20px;
+        min-height: 44px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    input, select, textarea {
+        font-size: 16px; /* Prevents auto-zoom on iOS */
+    }
+}

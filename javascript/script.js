@@ -1,46 +1,63 @@
+/**
+ * Script principal
+ * Lidia Zaniboni & Advogados Associados
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    // Menu toggle para dispositivos móveis
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.menu');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            menu.classList.toggle('active');
-        });
+    // Inicializar todos os módulos
+    if (typeof Navigation !== 'undefined') Navigation.init();
+    if (typeof Testimonials !== 'undefined') Testimonials.init();
+    if (typeof Forms !== 'undefined') Forms.init();
+    if (typeof Animations !== 'undefined') Animations.init();
+    if (typeof WhatsApp !== 'undefined') WhatsApp.init();
+    if (typeof CookieConsent !== 'undefined') CookieConsent.init();
+    if (typeof ExitIntent !== 'undefined') ExitIntent.init();
+    if (typeof Performance !== 'undefined') Performance.init();
+    if (typeof GoogleMaps !== 'undefined') GoogleMaps.init();
+    if (typeof Accessibility !== 'undefined') Accessibility.init();
+});
+
+// Menu toggle para dispositivos móveis
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu');
+
+if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+        menu.classList.toggle('active');
+    });
+}
+
+// Fechar menu ao clicar em um link
+const menuLinks = document.querySelectorAll('.menu a');
+menuLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        menu.classList.remove('active');
+    });
+});
+
+// Header scroll effect
+const header = document.querySelector('header');
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
     }
-    
-    // Fechar menu ao clicar em um link
-    const menuLinks = document.querySelectorAll('.menu a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            menu.classList.remove('active');
-        });
-    });
-    
-    // Header scroll effect
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-    
-    // Rolagem suave para links de navegação
-    implementSmoothScrolling();
-    
-    // Botão voltar ao topo
-    createBackToTopButton();
-    
-    // Validação de formulário
-    setupFormValidation();
-    
-    // Automação do carrossel de depoimentos
-    setupTestimonialCarousel();
-    
-    // Implementar carregamento preguiçoso para imagens
-    setupLazyLoading();
+});
+
+// Rolagem suave para links de navegação
+implementSmoothScrolling();
+
+// Botão voltar ao topo
+createBackToTopButton();
+
+// Validação de formulário
+setupFormValidation();
+
+// Automação do carrossel de depoimentos
+setupTestimonialCarousel();
+
+// Implementar carregamento preguiçoso para imagens
+setupLazyLoading();
 });
 
 // Implementação de rolagem suave
@@ -279,4 +296,3 @@ function setupLazyLoading() {
             window.addEventListener('orientationChange', lazyLoad);
         }
     }
-}

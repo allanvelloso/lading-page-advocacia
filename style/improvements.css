@@ -1,4 +1,26 @@
-/* Estilos para o botão voltar ao topo */
+/* Base styles for full width and proper box model */
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Back to top button */
 .back-to-top {
     position: fixed;
     bottom: 40px;
@@ -24,20 +46,43 @@
     transform: translateY(-3px);
 }
 
-/* Estilos para o carrossel de depoimentos */
+/* Testimonials carousel */
 .depoimentos-slider {
     position: relative;
     overflow: hidden;
-    height: 300px;
+    height: 400px;
+    margin: 50px auto;
+    max-width: 800px;
 }
 
 .depoimento-card {
     position: absolute;
     width: 100%;
     transition: all 0.5s ease;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #c8c8c8;
+    color: var(--primare-color);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Estilos para validação de formulário */
+.depoimento-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Star ratings */
+.rating .fas.fa-star {
+    color: #ffd700; /* Golden color for stars */
+}
+
+/* Form styles */
 .form-group {
     position: relative;
     margin-bottom: 20px;
@@ -52,7 +97,13 @@ input.error, textarea.error, select.error {
     border-color: red;
 }
 
-/* Animações de carregamento */
+/* Accessibility - visible focus */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--primary-color, #1a1a1a);
+    outline-offset: 2px;
+}
+
+/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -62,8 +113,22 @@ input.error, textarea.error, select.error {
     animation: fadeIn 0.5s ease-in;
 }
 
-/* Melhorias para dispositivos móveis */
+/* Card hover effects */
+.service-card, .area-card, .reason-card, .strategy-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover, .area-card:hover, .reason-card:hover, .strategy-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
+    .depoimentos-slider {
+        height: 450px;
+    }
+    
     .back-to-top {
         width: 40px;
         height: 40px;
@@ -72,34 +137,16 @@ input.error, textarea.error, select.error {
         font-size: 16px;
     }
     
-    /* Elementos mais fáceis de tocar em dispositivos móveis */
     .menu a, .btn, button, input[type="submit"] {
         padding: 12px 20px;
         min-height: 44px;
     }
     
-    /* Espaçamento melhorado para formulários em dispositivos móveis */
     .form-group {
         margin-bottom: 15px;
     }
     
     input, select, textarea {
-        font-size: 16px; /* Evita zoom automático em iOS */
+        font-size: 16px; /* Prevents auto-zoom on iOS */
     }
-}
-
-/* Acessibilidade - foco visível */
-a:focus, button:focus, input:focus, textarea:focus, select:focus {
-    outline: 2px solid var(--primary-color, #1a1a1a);
-    outline-offset: 2px;
-}
-
-/* Animações para elementos da página */
-.service-card, .area-card, .reason-card, .strategy-item {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover, .area-card:hover, .reason-card:hover, .strategy-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }

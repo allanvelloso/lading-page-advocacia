@@ -1,174 +1,113 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Verificar se já mostrou a mensagem nesta sessão
-    if (!sessionStorage.getItem('exitIntentShown')) {
-        setupExitIntent();
-    }
-});
-
-function setupExitIntent() {
-    let showModal = true;
-    let mouseY = 0;
-    const sensitivity = 30; // Distância do topo para acionar
-
-    // Detectar movimento do mouse para fora da janela
-    document.addEventListener('mouseleave', handleMouseLeave);
+/**
+ * Módulo de Exit Intent
+ * Lidia Zaniboni & Advogados Associados
+ */
+const ExitIntent = {
+    init: function() {
+        this.setupExitIntent();
+    },
     
-    // Detectar movimento do mouse para o topo da janela
-    document.addEventListener('mousemove', function(e) {
-        mouseY = e.clientY;
-    });
-
-    function handleMouseLeave(e) {
-        // Se o mouse estiver próximo ao topo da janela
-        if (mouseY < sensitivity && showModal) {
-            showExitIntentModal();
+    setupExitIntent: function() {
+        // Verificar se já foi mostrado
+        if (sessionStorage.getItem('exitIntentShown')) {
+            return;
         }
-    }
-
-    function showExitIntentModal() {
-        // Evitar mostrar o modal mais de uma vez
-        if (!showModal) return;
-        showModal = false;
         
-        // Marcar como mostrado nesta sessão
-        sessionStorage.setItem('exitIntentShown', 'true');
+        // Detectar quando o usuário está prestes a sair da página
+        document.addEventListener('mouseleave', (e) => {
+            // Só ativar se o mouse sair pela parte superior da página
+            if (e.clientY < 5 && !sessionStorage.getItem('exitIntentShown')) {
+                this.showExitIntentPopup();
+                sessionStorage.setItem('exitIntentShown', 'true');
+            }
+        });
+    },
+    
+    showExitIntentPopup: function() {
+        // Criar o popup
+        const popup = document.createElement('div');
+        popup.className = 'exit-intent-popup';
+        popup.style.position = 'fixed';
+        popup.style.top = '0';
+        popup.style.left = '0';
+        popup.style.width = '100%';
+        popup.style.height = '100%';
+        popup.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        popup.style.display = 'flex';
+        popup.style.justifyContent = 'center';
+        popup.style.alignItems = 'center';
+        popup.style.zIndex = '10000';
         
-        // Criar o modal
-        const modal = document.createElement('div');
-        modal.className = 'exit-intent-modal';
-        modal.innerHTML = `
-            <div class="exit-modal-content">
-                <button class="close-exit-modal">&times;</button>
-                <div class="exit-modal-body">
-                    <h2>Espere um momento!</h2>
-                    <p>Antes de sair, que tal uma consulta inicial gratuita?</p>
-                    <p>Nossos advogados estão prontos para ajudar com seu caso.</p>
-                    <form class="exit-form">
-                        <input type="text" placeholder="Seu nome" required>
-                        <input type="email" placeholder="Seu e-mail" required>
-                        <input type="tel" placeholder="Seu telefone" required>
-                        <button type="submit" class="exit-submit-btn">Quero uma consulta gratuita</button>
-                    </form>
-                    <p class="exit-no-thanks">Não, obrigado. Quero sair do site.</p>
-                </div>
-            </div>
-        `;
+        // Conteúdo do popup
+        const content = document.createElement('div');
+        content.className = 'exit-popup-content';
+        content.style.backgroundColor = 'white';
+        content.style.borderRadius = '8px';
+        content.style.padding = '30px';
+        content.style.maxWidth = '500px';
+        content.style.width = '90%';
+        content.style.textAlign = 'center';
+        content.style.position = 'relative';
+        content.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
         
-        // Estilizar o modal
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
-        modal.style.left = '0';
-        modal.style.width = '100%';
-        modal.style.height = '100%';
-        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-        modal.style.display = 'flex';
-        modal.style.justifyContent = 'center';
-        modal.style.alignItems = 'center';
-        modal.style.zIndex = '9999';
-        modal.style.opacity = '0';
-        modal.style.transition = 'opacity 0.3s ease';
-        
-        const modalContent = modal.querySelector('.exit-modal-content');
-        modalContent.style.backgroundColor = 'white';
-        modalContent.style.borderRadius = '8px';
-        modalContent.style.maxWidth = '500px';
-        modalContent.style.width = '90%';
-        modalContent.style.position = 'relative';
-        modalContent.style.padding = '30px';
-        modalContent.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
-        modalContent.style.transform = 'translateY(20px)';
-        modalContent.style.transition = 'transform 0.3s ease';
-        
-        const closeButton = modal.querySelector('.close-exit-modal');
+        // Botão de fechar
+        const closeButton = document.createElement('button');
+        closeButton.innerHTML = '&times;';
         closeButton.style.position = 'absolute';
         closeButton.style.top = '10px';
-        closeButton.style.right = '15px';
-        closeButton.style.fontSize = '24px';
-        closeButton.style.background = 'none';
+        closeButton.style.right = '10px';
         closeButton.style.border = 'none';
+        closeButton.style.background = 'none';
+        closeButton.style.fontSize = '24px';
         closeButton.style.cursor = 'pointer';
+        closeButton.style.color = '#333';
         
-        const modalBody = modal.querySelector('.exit-modal-body');
-        modalBody.style.textAlign = 'center';
+        // Conteúdo interno
+        content.innerHTML += `
+            <h3 style="color: #2b3a5c; margin-top: 0;">Não vá embora ainda!</h3>
+            <p>Agende uma consulta gratuita e descubra como podemos ajudar no seu caso.</p>
+            <form id="exit-intent-form" style="margin-top: 20px;">
+                <div style="margin-bottom: 15px;">
+                    <input type="text" placeholder="Seu nome" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <input type="email" placeholder="Seu e-mail" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <input type="tel" placeholder="Seu telefone" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <button type="submit" style="background-color: #25d366; color: white; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold;">Agendar Consulta Gratuita</button>
+            </form>
+        `;
         
-        const heading = modal.querySelector('h2');
-        heading.style.color = '#333';
-        heading.style.marginBottom = '15px';
+        // Adicionar botão de fechar
+        content.appendChild(closeButton);
         
-        const paragraphs = modal.querySelectorAll('p');
-        paragraphs.forEach(p => {
-            p.style.marginBottom = '15px';
-            p.style.color = '#555';
-        });
-        
-        const form = modal.querySelector('.exit-form');
-        form.style.display = 'flex';
-        form.style.flexDirection = 'column';
-        form.style.gap = '10px';
-        form.style.marginTop = '20px';
-        form.style.marginBottom = '20px';
-        
-        const inputs = form.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.style.padding = '12px';
-            input.style.borderRadius = '4px';
-            input.style.border = '1px solid #ddd';
-            input.style.fontSize = '14px';
-        });
-        
-        const submitButton = form.querySelector('.exit-submit-btn');
-        submitButton.style.padding = '12px';
-        submitButton.style.backgroundColor = '#25d366';
-        submitButton.style.color = 'white';
-        submitButton.style.border = 'none';
-        submitButton.style.borderRadius = '4px';
-        submitButton.style.cursor = 'pointer';
-        submitButton.style.fontWeight = 'bold';
-        submitButton.style.fontSize = '16px';
-        submitButton.style.marginTop = '10px';
-        
-        const noThanks = modal.querySelector('.exit-no-thanks');
-        noThanks.style.cursor = 'pointer';
-        noThanks.style.textDecoration = 'underline';
-        noThanks.style.fontSize = '14px';
-        noThanks.style.color = '#777';
+        // Adicionar conteúdo ao popup
+        popup.appendChild(content);
         
         // Adicionar ao DOM
-        document.body.appendChild(modal);
+        document.body.appendChild(popup);
         
-        // Animar entrada
-        setTimeout(() => {
-            modal.style.opacity = '1';
-            modalContent.style.transform = 'translateY(0)';
-        }, 10);
-        
-        // Adicionar eventos
-        closeButton.addEventListener('click', closeModal);
-        noThanks.addEventListener('click', closeModal);
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Aqui você pode adicionar código para enviar os dados do formulário
-            alert('Obrigado! Entraremos em contato em breve.');
-            
-            closeModal();
+        // Adicionar evento de fechar
+        closeButton.addEventListener('click', () => {
+            popup.remove();
         });
         
         // Fechar ao clicar fora
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.remove();
             }
         });
         
-        function closeModal() {
-            modal.style.opacity = '0';
-            modalContent.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                document.body.removeChild(modal);
-            }, 300);
-        }
-    }
-}
+        // Processar formulário
+        const form = document.getElementById('exit-intent-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Aqui você pode adicionar o código para processar o formulário
+                // Por exemplo, enviar os dados para um servidor
+                
+                // Mostrar mensagem de sucesso

@@ -33,11 +33,7 @@ function addGoogleMap() {
     loadStaticMap();
     
     function loadStaticMap() {
-        // Coordenadas da Av. Paulista, 1000 (exemplo)
-        const lat = -23.5632;
-        const lng = -46.6544;
-        
-        // Criar iframe com OpenStreetMap (não requer API key)
+        // Criar iframe com Google Maps usando o código de incorporação fornecido
         const iframe = document.createElement('iframe');
         iframe.width = '100%';
         iframe.height = '100%';
@@ -45,22 +41,25 @@ function addGoogleMap() {
         iframe.scrolling = 'no';
         iframe.marginHeight = '0';
         iframe.marginWidth = '0';
-        iframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&layer=mapnik&marker=${lat},${lng}`;
+        iframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3494.1128979290525!2d-42.3397759!3d-22.8765239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x976970d5010053%3A0x9d22bee2d0c9a073!2sLidia%20Zaniboni%20%26%20Advogados%20Associados!5e1!3m2!1spt-PT!2sbr!4v1742328246696!5m2!1spt-PT!2sbr";
         iframe.style.border = 'none';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
         
         // Adicionar iframe ao container
         mapContainer.appendChild(iframe);
         
         // Adicionar link para visualização em tela cheia
         const viewLink = document.createElement('a');
-        viewLink.href = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=16/${lat}/${lng}`;
+        viewLink.href = "https://www.google.com/maps/place/Lidia+Zaniboni+%26+Advogados+Associados/@-22.8765239,-42.3397759,17z/";
         viewLink.target = '_blank';
-        viewLink.textContent = 'Ver mapa ampliado';
+        viewLink.textContent = 'Ver no Google Maps';
         viewLink.style.display = 'block';
         viewLink.style.textAlign = 'right';
         viewLink.style.marginTop = '5px';
         viewLink.style.fontSize = '14px';
-        viewLink.style.color = '#25d366';
+        viewLink.style.color = '#2b3a5c';
         
         mapContainer.after(viewLink);
         

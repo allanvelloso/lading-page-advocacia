@@ -104,7 +104,7 @@ function validateInput() {
         }
         
         errorDiv.textContent = errorMessage;
-        errorDiv.style.color = 'red';
+        errorDiv.style.color = '#ffa8a8'; // Alterado de 'red' para '#ffa8a8' (cor secundária)
         errorDiv.style.fontSize = '12px';
         errorDiv.style.marginTop = '5px';
     } else {
@@ -147,7 +147,7 @@ function addRequiredFieldIndicators(form) {
             const indicator = document.createElement('span');
             indicator.className = 'required-indicator';
             indicator.textContent = ' *';
-            indicator.style.color = 'red';
+            indicator.style.color = '#ffa8a8'; // Mudando a cor para rosa/salmão (var(--secondary-color))
             label.appendChild(indicator);
         }
     });
