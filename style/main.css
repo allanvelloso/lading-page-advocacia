@@ -21,6 +21,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     background-color: #ffffff; /* Cor de fundo branca para todo o site */
+    padding-top: 80px; /* Adicionar espaço para o navbar fixo */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -82,13 +83,34 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--secondary-color);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    padding: 15px 0;
+    padding: 20px 0;
     transition: all 0.3s ease;
-    margin-bottom: 50px;
-    padding-bottom: 10px;
+    background-color: transparent;
+    background-color: #ffa8a8;
+}
+
+header.scrolled {
+    background-color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header.scrolled .logo img {
+    max-height: 50px;
+}
+
+header.scrolled .menu a {
+    color: #2b3a5c;
+}
+
+header.scrolled .btn-contato {
+    background-color: #ffffff;
+    color: var(--primary-color);
+}
+
+header.scrolled .menu-toggle i {
+    color: #ffffff;
 }
 
 header .container {

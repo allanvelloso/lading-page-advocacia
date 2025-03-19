@@ -2,55 +2,101 @@
  * Script principal
  * Lidia Zaniboni & Advogados Associados
  */
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar todos os módulos
-    if (typeof Navigation !== 'undefined') Navigation.init();
-    if (typeof Testimonials !== 'undefined') Testimonials.init();
-    if (typeof Forms !== 'undefined') Forms.init();
-    if (typeof Animations !== 'undefined') Animations.init();
-    if (typeof WhatsApp !== 'undefined') WhatsApp.init();
-    if (typeof CookieConsent !== 'undefined') CookieConsent.init();u
-    if (typeof ExitIntent !== 'undefined') ExitIntent.init();
-    if (typeof Performance !== 'undefined') Performance.init();
-    if (typeof GoogleMaps !== 'undefined') GoogleMaps.init();
-    if (typeof Accessibility !== 'undefined') Accessibility.init();
-});
 
-// Menu toggle para dispositivos móveis
-const menuToggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu');
+// Função para controlar o efeito de scroll no navbar
+function handleNavbarScroll() {
+    const header = document.querySelector('header');
+    const scrollPosition = window.scrollY;
 
-if (menuToggle) {
-    menuToggle.addEventListener('click', function() {
-        menu.classList.toggle('active');
-    });
+    if (scrollPosition > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
 }
 
-// Fechar menu ao clicar em um link
-const menuLinks = document.querySelectorAll('.menu a');
-menuLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        menu.classList.remove('active');
-    });
+// Função auxiliar para inicializar módulos com segurança
+function initializeModule(moduleName, moduleObject) {
+    try {
+        if (typeof moduleObject !== 'undefined') {
+            moduleObject.init();
+            console.log(`Módulo ${moduleName} inicializado com sucesso`);
+        }
+    } catch (error) {
+        console.error(`Erro ao inicializar módulo ${moduleName}:`, error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Adicionar evento de scroll para o navbar
+    window.addEventListener('scroll', handleNavbarScroll);
+    // Chamar a função uma vez para verificar a posição inicial
+    handleNavbarScroll();
+
+    // Inicializar todos os módulos com tratamento de erros
+    initializeModule('Navigation', Navigation);
+    initializeModule('Testimonials', Testimonials);
+    initializeModule('Forms', Forms);
+    initializeModule('Animations', Animations);
+    initializeModule('WhatsApp', WhatsApp);
+    initializeModule('CookieConsent', CookieConsent);
+    initializeModule('ExitIntent', ExitIntent);
+    initializeModule('Performance', Performance);
+    initializeModule('GoogleMaps', GoogleMaps);
+    initializeModule('Accessibility', Accessibility);
+
+    // Menu toggle para dispositivos móveis com tratamento de erros
+    try {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+
+        if (menuToggle && menu) {
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('active');
+            });
+
+            // Fechar menu ao clicar em um link
+            const menuLinks = document.querySelectorAll('.menu a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    menu.classList.remove('active');
+                });
+            });
+        }
+    } catch (error) {
+        console.error('Erro ao configurar menu mobile:', error);
+    }
+
+    // Rolagem suave para links de navegação
+    try {
+        implementSmoothScrolling();
+    } catch (error) {
+        console.error('Erro ao implementar rolagem suave:', error);
+    }
+
+    // Botão voltar ao topo
+    try {
+        createBackToTopButton();
+    } catch (error) {
+        console.error('Erro ao criar botão voltar ao topo:', error);
+    }
+
+    // Validação de formulário
+    try {
+        setupFormValidation();
+    } catch (error) {
+        console.error('Erro ao configurar validação de formulário:', error);
+    }
+
+    // Automação do carrossel de depoimentos
+    try {
+        setupTestimonialCarousel();
+    } catch (error) {
+        console.error('Erro ao configurar carrossel de depoimentos:', error);
+    }
 });
 
 // Removido o código de efeito de scroll do header
-
-// Rolagem suave para links de navegação
-implementSmoothScrolling();
-
-// Botão voltar ao topo
-createBackToTopButton();
-
-// Validação de formulário
-setupFormValidation();
-
-// Automação do carrossel de depoimentos
-setupTestimonialCarousel();
-
-// Implementar carregamento preguiçoso para imagens
-setupLazyLoading();
-// }); <- Remover este fechamento extra
 
 // Implementação de rolagem suave
 function implementSmoothScrolling() {
@@ -288,3 +334,4 @@ function setupLazyLoading() {
             window.addEventListener('orientationChange', lazyLoad);
         }
     }
+}
