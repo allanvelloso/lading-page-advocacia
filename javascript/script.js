@@ -45,28 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeModule('GoogleMaps', GoogleMaps);
     initializeModule('Accessibility', Accessibility);
 
-    // Menu toggle para dispositivos móveis com tratamento de erros
-    try {
-        const menuToggle = document.querySelector('.menu-toggle');
-        const menu = document.querySelector('.menu');
-
-        if (menuToggle && menu) {
-            menuToggle.addEventListener('click', function() {
-                menu.classList.toggle('active');
-            });
-
-            // Fechar menu ao clicar em um link
-            const menuLinks = document.querySelectorAll('.menu a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    menu.classList.remove('active');
-                });
-            });
-        }
-    } catch (error) {
-        console.error('Erro ao configurar menu mobile:', error);
-    }
-
     // Rolagem suave para links de navegação
     try {
         implementSmoothScrolling();

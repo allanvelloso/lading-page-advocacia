@@ -3,353 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lidia Zaniboni & Advogados Associados - Escritório de advocacia especializado em diversas áreas do direito">
+    <meta name="theme-color" content="#1a1a1a">
     <title>Lidia Zaniboni & Advogados Associados</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="./style/main.css" as="style">
+    <link rel="preload" href="./js/menu.js" as="script">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./style/header.css">
     <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/improvements.css">
+    <link rel="stylesheet" href="./style/responsive.css">
+    <link rel="stylesheet" href="./style/hamburger-menu.css">
+    <link rel="stylesheet" href="./style/estrategia.css">
+    
+    <!-- External resources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header role="banner">
         <div class="container">
             <div class="logo">
-                <a href="#home">
-                    <img src="images/logonavbar.png" alt="Lidia Zaniboni & Advogados Associados">
+                <a href="#home" class="logo-link" aria-label="Voltar ao início">
+                    <img src="images/logonavbar.png" alt="Logo Lidia Zaniboni & Advogados Associados" width="150" height="50" loading="eager">
                 </a>
             </div>
-            <nav>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul class="menu">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#areas">Áreas de Atuação</a></li>
-                    <li><a href="#advogados">Sobre mim</a></li>
-                    <li><a href="#depoimentos">Depoimentos</a></li>
-                    <li><a href="#contato" class="btn-contato">Contato</a></li>
+            <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav role="navigation" aria-label="Menu principal">
+                <ul class="menu" id="menu">
+                    <li><a href="#home" class="nav-link" aria-current="page">Início</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#areas" class="nav-link">Áreas de Atuação</a></li>
+                    <li><a href="#advogados" class="nav-link">Sobre mim</a></li>
+                    <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+                    <li><a href="#contato" class="btn-contato nav-link">Contato</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Justiça.<br>Compromisso.<br><span class="highlight">Excelência.</span></h1>
-                    <p>Defendendo seus direitos com ética e dedicação.</p>
-                    <a href="#contato" class="btn">Consultoria Inicial Gratuita</a>
-                </div>
-                <div class="hero-image">
-                    <img src="images/imageminicio.png" alt="Advogado profissional">
+    <main>
+        <section id="home" class="hero" aria-label="Seção inicial">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Justiça.<br>Compromisso.<br><span class="highlight">Excelência.</span></h1>
+                        <p>Defendendo seus direitos com ética e dedicação.</p>
+                        <a href="#contato" class="btn" aria-label="Solicitar consultoria inicial gratuita">Consultoria Inicial Gratuita</a>
+                    </div>
+                    <div class="hero-image">
+                        <img src="images/imageminicio.png" alt="Advogado profissional em ambiente de trabalho" width="500" height="400" loading="eager">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="services">
-        <div class="container">
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Direito Civil</h3>
-                    <p>Especialistas em questões contratuais e responsabilidade civil</p>
-                </div>
-                <div class="service-card dark">
-                    <div class="icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>Direito Imobiliário</h3>
-                    <p>Assessoria completa para empresas de todos os portes</p>
-                </div>
-                <div class="service-card">
-                    <div class="icon">
-                        <i class="fas fa-gavel"></i>
-                    </div>
-                    <h3>Direito Tributário</h3>
-                    <p>Planejamento tributário e defesa em processos fiscais</p>
+        <section class="services" aria-label="Serviços oferecidos">
+            <div class="container">
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>Direito Civil</h3>
+                        <p>Especialistas em questões contratuais e responsabilidade civil</p>
+                    </article>
+                    <article class="service-card dark">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Direito Imobiliário</h3>
+                        <p>Assessoria completa para empresas de todos os portes</p>
+                    </article>
+                    <article class="service-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3>Direito Tributário</h3>
+                        <p>Planejamento tributário e defesa em processos fiscais</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="sobre" class="sobre">
-        <div class="container">
-            <div class="sobre-content">
-                <div class="sobre-text">
-                    <h2>Por que Você Pode Confiar na Lidia Zaniboni & Advogados Associados.Nossos Valores.</h2>
-                    <p>Seja bem-vindo ao escritório Lidia Zaniboni & Advogados Associados, onde excelência no atendimento e compromisso com soluções jurídicas eficientes são os pilares que sustentam nosso trabalho.</p>
-                    <p>Nosso time é formado por advogados especializados em diversas áreas do Direito, prontos para oferecer um serviço personalizado e de alta qualidade, sempre alinhado às necessidades de nossos clientes.</p>
-                    <p>Acreditamos que a base do sucesso de nossa atuação está na relação de confiança mútua com nossos clientes. Para nós, cada caso é tratado com a máxima atenção e dedicação, garantindo não apenas resultados, mas também a segurança de que você está sendo orientado por profissionais competentes e comprometidos.</p>
-                    <a href="#contato" class="btn">Saiba Mais</a>
-                </div>
-                <div class="sobre-image">
-                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Escritório de advocacia">
+        <section id="sobre" class="sobre">
+            <div class="container">
+                <div class="sobre-content">
+                    <div class="sobre-text">
+                        <h2>Por que Você Pode Confiar na Lidia Zaniboni & Advogados Associados</h2>
+                        <p>Seja bem-vindo ao escritório Lidia Zaniboni & Advogados Associados, onde excelência no atendimento e compromisso com soluções jurídicas eficientes são os pilares que sustentam nosso trabalho.</p>
+                        <p>Nosso time é formado por advogados especializados em diversas áreas do Direito, prontos para oferecer um serviço personalizado e de alta qualidade, sempre alinhado às necessidades de nossos clientes.</p>
+                        <p>Acreditamos que a base do sucesso de nossa atuação está na relação de confiança mútua com nossos clientes. Para nós, cada caso é tratado com a máxima atenção e dedicação, garantindo não apenas resultados, mas também a segurança de que você está sendo orientado por profissionais competentes e comprometidos.</p>
+                        <a href="#contato" class="btn">Saiba Mais</a>
+                    </div>
+                    <div class="sobre-image">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Escritório de advocacia" loading="lazy">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="stats">
-        <div class="container">
-            <h2>Experiência em Diversos Casos</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>2024</h3>
-                    <p>Ano de Fundação</p>
-                </div>
-                <div class="stat-item">
-                    <h3>547</h3>
-                    <p>Casos Ganhos</p>
-                </div>
-                <div class="stat-item">
-                    <h3>45</h3>
-                    <p>Advogados Especializados</p>
-                </div>
-                <div class="stat-item">
-                    <h3>1500</h3>
-                    <p>Clientes Satisfeitos</p>
+        <section class="stats">
+            <div class="container">
+                <h2>Experiência em Diversos Casos</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>2024</h3>
+                        <p>Ano de Fundação</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>547</h3>
+                        <p>Casos Ganhos</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>45</h3>
+                        <p>Advogados Especializados</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1500</h3>
+                        <p>Clientes Satisfeitos</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="areas" class="areas-atuacao">
-        <div class="container">
-            <h2>Nossas Áreas de Atuação</h2>
-            <div class="areas-grid">
-                <div class="area-card">
-                    <div class="icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Direito Cível</h3>
-                    <p>Representação em questões contratuais, responsabilidade civil e ações indenizatórias.</p>
-                </div>
-                <div class="area-card">
-                    <div class="icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>Direito do Consumidor</h3>
-                    <p>Defesa dos direitos do consumidor, ações contra empresas e reparação de danos.</p>
-                </div>
-                <div class="area-card">
-                    <div class="icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Direito de Família</h3>
-                    <p>Divórcios, pensão alimentícia, guarda de filhos e partilha de bens.</p>
-                </div>
-                <div class="area-card">
-                    <div class="icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Direito Imobiliário</h3>
-                    <p>Contratos imobiliários, usucapião, regularização fundiária e ações possessórias.</p>
-                </div>
-                <div class="area-card">
-                    <div class="icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Direito Previdenciário</h3>
-                    <p>Aposentadorias, pensões, benefícios por incapacidade e revisões de benefícios.</p>
-                </div>
-                <div class="area-card">
-                    <div class="icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3>Direito Trabalhista</h3>
-                    <p>Defesa de direitos trabalhistas, negociações coletivas e consultoria preventiva.</p>
+        <section id="areas" class="areas-atuacao">
+            <div class="container">
+                <h2>Nossas Áreas de Atuação</h2>
+                <div class="areas-grid">
+                    <article class="area-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Direito Cível</h3>
+                        <p>Representação em questões contratuais, responsabilidade civil e ações indenizatórias.</p>
+                    </article>
+                    <article class="area-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Direito do Consumidor</h3>
+                        <p>Defesa dos direitos do consumidor, ações contra empresas e reparação de danos.</p>
+                    </article>
+                    <article class="area-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Direito de Família</h3>
+                        <p>Divórcios, pensão alimentícia, guarda de filhos e partilha de bens.</p>
+                    </article>
+                    <article class="area-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Direito Imobiliário</h3>
+                        <p>Contratos imobiliários, usucapião, regularização fundiária e ações possessórias.</p>
+                    </article>
+                    <article class="area-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Direito Previdenciário</h3>
+                        <p>Aposentadorias, pensões, benefícios por incapacidade e revisões de benefícios.</p>
+                    </article>
+                    <article class="area-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Direito Trabalhista</h3>
+                        <p>Defesa de direitos trabalhistas, negociações coletivas e consultoria preventiva.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="strategy">
-        <div class="container">
-            <h2>Nossa Estratégia</h2>
-            <div class="strategy-grid">
-                <div class="strategy-item">
-                    <div class="number">01</div>
-                    <h3>Planejamento</h3>
-                    <p>Análise detalhada do caso e desenvolvimento de estratégias personalizadas para cada cliente.</p>
-                </div>
-                <div class="strategy-item">
-                    <div class="number">02</div>
-                    <h3>Execução</h3>
-                    <p>Implementação precisa da estratégia com acompanhamento constante e comunicação transparente.</p>
+        <section class="strategy">
+            <div class="container">
+                <h2>Nossa Estratégia</h2>
+                <div class="strategy-grid">
+                    <article class="strategy-item">
+                        <div class="number" aria-hidden="true">01</div>
+                        <h3>Planejamento</h3>
+                        <p>Análise detalhada do caso e desenvolvimento de estratégias personalizadas para cada cliente.</p>
+                    </article>
+                    <article class="strategy-item">
+                        <div class="number" aria-hidden="true">02</div>
+                        <h3>Execução</h3>
+                        <p>Implementação precisa da estratégia com acompanhamento constante e comunicação transparente.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="advogados" class="advogados">
-        <div class="container">
-            <h2>Sobre Mim</h2>
-            <div class="advogados-grid">
-                <div class="advogado-card">
-                    <div class="advogado-img">
-                        <img src="images/imagesobremim.jpg" alt="Dra. Lidia Zaniboni">
-                    </div>
-                    <div class="advogado-info">
-                        <h3>Dra. Lidia Zaniboni</h3>
-                        <p>Advogada Especialista</p>
-                        <div class="sobre-advogado">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.</p>
-                            <p>Suspendisse in orci enim. Donec sed ligula in purus rutrum ultrices. Curabitur fringilla, nulla vel tempus placerat, massa magna tincidunt augue, non mattis sem nulla eu augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+        <section id="advogados" class="advogados">
+            <div class="container">
+                <h2>Sobre Mim</h2>
+                <div class="advogados-grid">
+                    <article class="advogado-card">
+                        <div class="advogado-img">
+                            <img src="images/imagesobremim.jpg" alt="Dra. Lidia Zaniboni" loading="lazy">
                         </div>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        <div class="advogado-info">
+                            <h3>Dra. Lidia Zaniboni</h3>
+                            <p>Advogada Especialista</p>
+                            <div class="sobre-advogado">
+                                <p>Com mais de 15 anos de experiência no mercado jurídico, a Dra. Lidia Zaniboni tem se destacado por sua dedicação e excelência no atendimento aos clientes. Sua formação acadêmica sólida e constante atualização nas mais recentes mudanças legislativas garantem um serviço jurídico de alta qualidade.</p>
+                                <p>Especialista em diversas áreas do direito, a Dra. Lidia tem um histórico comprovado de sucesso em casos complexos, sempre priorizando a ética e a transparência em sua atuação. Seu compromisso com a excelência e o atendimento personalizado tem conquistado a confiança de inúmeros clientes ao longo de sua carreira.</p>
+                            </div>
+                            <div class="social-icons">
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                            </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="depoimentos" class="depoimentos">
-        <div class="container">
-            <h2>Histórias de Clientes Satisfeitos</h2>
-            <div class="depoimentos-slider">
-                <div class="depoimento-card">
-                    <div class="quote">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p>O atendimento da Lidia Zaniboni & Advogados Associados superou todas as minhas expectativas. Profissionais extremamente competentes que resolveram meu caso com agilidade e eficiência.</p>
-                    <div class="cliente">
-                        <div class="cliente-img">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente">
+        <section id="depoimentos" class="depoimentos">
+            <div class="container">
+                <h2>Histórias de Clientes Satisfeitos</h2>
+                <div class="depoimentos-slider" role="region" aria-label="Depoimentos de clientes">
+                    <article class="depoimento-card">
+                        <div class="quote" aria-hidden="true">
+                            <i class="fas fa-quote-left"></i>
                         </div>
-                        <div class="cliente-info">
-                            <h4>Carlos Silva</h4>
-                            <p>Empresário</p>
+                        <p>O atendimento da Dra. Lidia e sua equipe superou todas as minhas expectativas. Profissionais extremamente competentes que resolveram meu caso com agilidade e eficiência. Recomendo sem hesitar!</p>
+                        <div class="cliente">
+                            <div class="cliente-img">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Silva" loading="lazy">
+                            </div>
+                            <div class="cliente-info">
+                                <h4>Carlos Silva</h4>
+                                <p>Empresário</p>
+                            </div>
                         </div>
-                    </div>
+                    </article>
+                    <article class="depoimento-card">
+                        <div class="quote" aria-hidden="true">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>Graças à dedicação e conhecimento da Dra. Lidia, conseguimos resolver uma questão tributária complexa que se arrastava há anos. O profissionalismo e a atenção aos detalhes fizeram toda a diferença.</p>
+                        <div class="cliente">
+                            <div class="cliente-img">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Oliveira" loading="lazy">
+                            </div>
+                            <div class="cliente-info">
+                                <h4>Ana Oliveira</h4>
+                                <p>Diretora Financeira</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="depoimento-card">
+                        <div class="quote" aria-hidden="true">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>Profissionalismo e ética são as palavras que definem a Dra. Lidia e sua equipe. Sempre transparentes e objetivos em suas orientações jurídicas, conquistaram minha confiança desde o primeiro contato.</p>
+                        <div class="cliente">
+                            <div class="cliente-img">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Roberto Mendes" loading="lazy">
+                            </div>
+                            <div class="cliente-info">
+                                <h4>Roberto Mendes</h4>
+                                <p>Médico</p>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="depoimento-card">
-                    <div class="quote">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p>Graças à dedicação e conhecimento da equipe, conseguimos resolver uma questão tributária complexa que se arrastava há anos. Recomendo sem hesitar.</p>
-                    <div class="cliente">
-                        <div class="cliente-img">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente">
-                        </div>
-                        <div class="cliente-info">
-                            <h4>Ana Oliveira</h4>
-                            <p>Diretora Financeira</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="depoimento-card">
-                    <div class="quote">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p>Profissionalismo e ética são as palavras que definem a Lidia Zaniboni & Advogados Associados. Sempre transparentes e objetivos em suas orientações jurídicas.</p>
-                    <div class="cliente">
-                        <div class="cliente-img">
-                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Cliente">
-                        </div>
-                        <div class="cliente-info">
-                            <h4>Roberto Mendes</h4>
-                            <p>Médico</p>
-                        </div>
-                    </div>
+                <div class="slider-controls">
+                    <button class="prev" aria-label="Depoimento anterior"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next" aria-label="Próximo depoimento"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-            <div class="slider-controls">
-                <span class="prev"><i class="fas fa-chevron-left"></i></span>
-                <span class="next"><i class="fas fa-chevron-right"></i></span>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="why-choose-us">
-        <div class="container">
-            <h2>Por Que Escolher a Lidia Zaniboni & Advogados Associados</h2>
-            <div class="reasons-grid">
-                <div class="reason-card">
-                    <div class="icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Experiência Comprovada</h3>
-                    <p>Mais de 15 anos de atuação com casos de sucesso em diversas áreas do direito.</p>
-                </div>
-                <div class="reason-card">
-                    <div class="icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Atendimento Personalizado</h3>
-                    <p>Cada cliente recebe atenção individualizada, com estratégias específicas para seu caso.</p>
-                </div>
-                <div class="reason-card">
-                    <div class="icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>Ética e Transparência</h3>
-                    <p>Compromisso com a verdade e clareza em todas as etapas do processo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contato" class="contato">
-        <div class="container">
-            <h2>Entre em Contato</h2>
-            <div class="contato-container">
-                <div class="contato-info">
-                    <h3>Estamos à disposição para ajudar</h3>
-                    <p>Preencha o formulário ao lado para agendar uma consulta ou solicitar mais informações sobre nossos serviços.</p>
-                    <div class="horario">
-                        <h4>Horário de Atendimento</h4>
-                        <p><i class="far fa-clock"></i> Segunda a Sexta: 9h às 17h</p>
-                        <p><i class="far fa-clock"></i> Sábados: 10h às 12h (com agendamento prévio)</p>
-                        <p><i class="fas fa-phone"></i> (22) 99744-9858</p>
-                        <p><i class="fas fa-envelope"></i> contato@advlidiazaniboni.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Av. John Keneddy, 82, Sobreloja 19 - Centro, Araruama-RJ</p>
-                    </div>
-                </div>
-                <div class="contato-form">
-                    <form id="form-contato">
-                        <div class="form-group">
-                            <label for="nome">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" required>
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Por Que Escolher a Dra. Lidia Zaniboni</h2>
+                <div class="reasons-grid">
+                    <article class="reason-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-award"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" required>
+                        <h3>Experiência Comprovada</h3>
+                        <p>Mais de 15 anos de atuação com casos de sucesso em diversas áreas do direito.</p>
+                    </article>
+                    <article class="reason-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-handshake"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="telefone">Telefone</label>
-                            <input type="tel" id="telefone" name="telefone" required>
+                        <h3>Atendimento Personalizado</h3>
+                        <p>Cada cliente recebe atenção individualizada, com estratégias específicas para seu caso.</p>
+                    </article>
+                    <article class="reason-card">
+                        <div class="icon" aria-hidden="true">
+                            <i class="fas fa-balance-scale"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="assunto">Assunto</label>
-                            <select id="assunto" name="assunto" required>
-                                <option value="">Selecione</option>
-                                <option value="Direito Empresarial">Direito Empresarial</option>
-                                <option value="Direito Civil">Direito Civil</option>
-                                <option value="Direito Trabalhista">Direito Trabalhista</option>
-                                <option value="Direito Tributário">Direito Tributário</option>
-                                <option value="Outro">Outro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensagem">Mensagem</label>
-                            <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Enviar Mensagem</button>
-                    </form>
+                        <h3>Ética e Transparência</h3>
+                        <p>Compromisso com a verdade e clareza em todas as etapas do processo.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
+        <section id="contato" class="contato">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <div class="contato-container">
+                    <div class="contato-info">
+                        <h3>Estamos à disposição para ajudar</h3>
+                        <p>Preencha o formulário ao lado para agendar uma consulta ou solicitar mais informações sobre nossos serviços.</p>
+                        <div class="horario">
+                            <h4>Horário de Atendimento</h4>
+                            <p><i class="far fa-clock" aria-hidden="true"></i> Segunda a Sexta: 9h às 17h</p>
+                            <p><i class="far fa-clock" aria-hidden="true"></i> Sábados: 10h às 12h (com agendamento prévio)</p>
+                            <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:22997449858">(22) 99744-9858</a></p>
+                            <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:contato@advlidiazaniboni.com">contato@advlidiazaniboni.com</a></p>
+                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Av. John Keneddy, 82, Sobreloja 19 - Centro, Araruama-RJ</p>
+                        </div>
+                    </div>
+                    <div class="contato-form">
+                        <form id="form-contato" novalidate>
+                            <div class="form-group">
+                                <label for="nome">Nome Completo</label>
+                                <input type="text" id="nome" name="nome" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" required autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone">Telefone</label>
+                                <input type="tel" id="telefone" name="telefone" required autocomplete="tel">
+                            </div>
+                            <div class="form-group">
+                                <label for="assunto">Assunto</label>
+                                <select id="assunto" name="assunto" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Direito Empresarial">Direito Empresarial</option>
+                                    <option value="Direito Civil">Direito Civil</option>
+                                    <option value="Direito Trabalhista">Direito Trabalhista</option>
+                                    <option value="Direito Tributário">Direito Tributário</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem</label>
+                                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
@@ -358,22 +376,24 @@
                 </div>
                 <div class="footer-links">
                     <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#areas">Áreas de Atuação</a></li>
-                        <li><a href="#advogados">Advogados</a></li>
-                        <li><a href="#depoimentos">Depoimentos</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
+                    <nav aria-label="Links do rodapé">
+                        <ul>
+                            <li><a href="#home">Início</a></li>
+                            <li><a href="#sobre">Sobre</a></li>
+                            <li><a href="#areas">Áreas de Atuação</a></li>
+                            <li><a href="#advogados">Sobre mim</a></li>
+                            <li><a href="#depoimentos">Depoimentos</a></li>
+                            <li><a href="#contato">Contato</a></li>
+                        </ul>
+                    </nav>
                 </div>
                 <div class="footer-social">
                     <h3>Redes Sociais</h3>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -383,16 +403,7 @@
         </div>
     </footer>
 
-    <script src="javascript/script.js"></script>
-    <script src="javascript/botao-whatsapp.js"></script>
-    <script src="javascript/cookie-consent.js"></script>
-    <script src="javascript/exit-intent.js"></script>
-    <script src="javascript/performance.js"></script>
-    <script src="javascript/google-maps.js"></script>
-    <script src="javascript/form-enhancements.js"></script>
-    <script src="javascript/animations.js"></script>
-    <script src="javascript/accessibility.js"></script>
-    <script src="javascript/google-reviews.js"></script>
-    
+    <!-- Scripts -->
+    <script src="./js/menu.js" defer></script>
 </body>
 </html>

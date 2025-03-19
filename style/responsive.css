@@ -1,0 +1,1071 @@
+/* Breakpoints */
+:root {
+    --mobile: 480px;
+    --tablet: 768px;
+    --laptop: 1024px;
+    --desktop: 1200px;
+}
+
+/* Mobile First Approach */
+@media screen and (max-width: var(--mobile)) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Ocultar todas as imagens exceto logo */
+    img:not(.logo img) {
+        display: none;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 60px 0 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        margin: 15px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .areas-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .strategy-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .depoimentos-slider {
+        padding: 0;
+    }
+
+    .depoimento-card {
+        margin: 10px 0;
+        padding: 15px;
+    }
+
+    .contato-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contato-info,
+    .contato-form {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet e Mobile (até 768px) */
+@media screen and (max-width: 768px) {
+    /* Ocultar todas as imagens exceto logo */
+    img:not(.logo img) {
+        display: none;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Header e Menu */
+    header {
+        padding: 10px 0;
+    }
+
+    .logo img {
+        max-width: 150px;
+    }
+
+    /* Hero Section */
+    .hero-content {
+        padding: 80px 0 40px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+        line-height: 1.3;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        margin: 15px 0;
+    }
+
+    /* Services Section */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* About Section */
+    .sobre-content {
+        flex-direction: column;
+        padding: 20px 15px;
+        text-align: center;
+    }
+
+    .sobre-text {
+        width: 100%;
+        padding: 0;
+    }
+
+    .sobre-text h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .sobre-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .stat-item {
+        padding: 15px;
+        text-align: center;
+    }
+
+    /* Areas Section */
+    .areas-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .area-card {
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Strategy Section */
+    .strategy-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .strategy-item {
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Testimonials Section */
+    .depoimentos-slider {
+        padding: 0;
+    }
+
+    .depoimento-card {
+        margin: 10px 0;
+        padding: 15px;
+    }
+
+    /* Contact Section */
+    .contato {
+        padding: 40px 0;
+    }
+
+    .contato h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .contato-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 15px;
+    }
+
+    .contato-info {
+        width: 100%;
+        padding: 25px 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contato-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .contato-info > p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .horario {
+        margin-bottom: 25px;
+        padding: 0;
+    }
+
+    .horario h4 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .horario p {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    .horario i {
+        width: 20px;
+    }
+
+    .localizacao {
+        padding: 0;
+    }
+
+    .localizacao h4 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .localizacao p {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    .localizacao i {
+        width: 20px;
+    }
+
+    .contato-form {
+        width: 100%;
+        padding: 25px 20px;
+        background: #2b3a5c;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+
+    .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .contato-form .btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin-bottom: 20px;
+    }
+
+    .footer-logo h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .footer-logo p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.5;
+    }
+
+    .footer-links {
+        margin: 10px 0;
+    }
+
+    .footer-links h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .footer-links ul {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 0;
+        list-style: none;
+    }
+
+    .footer-links a {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #fff;
+    }
+
+    .footer-social {
+        margin: 10px 0;
+    }
+
+    .footer-social h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .advogados {
+        padding: 40px 0;
+    }
+
+    .advogados h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .advogados-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .advogado-card {
+        flex-direction: column;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .advogado-img {
+        display: none; /* Oculta a imagem em telas menores */
+    }
+
+    .advogado-info {
+        width: 100%;
+        padding: 0;
+        text-align: center;
+    }
+
+    .advogado-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .advogado-info p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .sobre-advogado {
+        text-align: left;
+        margin: 20px 0;
+    }
+
+    .sobre-advogado p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #444;
+        margin-bottom: 15px;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5;
+        border-radius: 50%;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background: #007bff;
+        color: #fff;
+        transform: translateY(-3px);
+    }
+
+    .why-choose-us {
+        padding: 40px 0;
+    }
+
+    .why-choose-us h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        text-align: center;
+        padding: 0 15px;
+    }
+
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 0 15px;
+    }
+
+    .reason-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 25px 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .reason-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .reason-card .icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        border-radius: 50%;
+        color: #007bff;
+        font-size: 1.5rem;
+    }
+
+    .reason-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        color: #333;
+    }
+
+    .reason-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #666;
+        margin: 0;
+    }
+
+    .horario {
+        text-align: left;
+        padding: 20px 15px;
+        margin-bottom: 30px;
+    }
+
+    .horario h4 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .horario p {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+    }
+
+    .horario i {
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+    }
+
+    .localizacao {
+        text-align: left;
+        padding: 20px 15px;
+    }
+
+    .localizacao h4 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .localizacao p {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+    }
+
+    .localizacao i {
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+    }
+
+    .contato-info {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        padding: 30px 20px;
+    }
+
+    .contato-info h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .contato-info > p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
+
+    .horario + .localizacao {
+        margin-top: 30px;
+    }
+}
+
+/* Tablet (765px - 1024px) */
+@media screen and (min-width: 765px) and (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 100px 0 60px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    /* Services Section */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* About Section */
+    .sobre-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Areas Section */
+    .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* Contact Section */
+    .contato-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .advogados {
+        padding: 60px 0;
+    }
+
+    .advogados-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .advogado-card {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .advogado-img {
+        width: 200px;
+        margin-right: 30px;
+    }
+
+    .advogado-img img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .advogado-info {
+        flex: 1;
+    }
+
+    .advogado-info h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .advogado-info p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .sobre-advogado {
+        margin: 20px 0;
+    }
+
+    .sobre-advogado p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .why-choose-us {
+        padding: 60px 0;
+    }
+
+    .why-choose-us h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .reasons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .reason-card {
+        padding: 30px 25px;
+    }
+
+    .reason-card .icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+
+    .reason-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .reason-card p {
+        font-size: 1rem;
+    }
+
+    .horario, .localizacao {
+        padding: 25px 20px;
+    }
+
+    .horario h4, .localizacao h4 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .horario p, .localizacao p {
+        font-size: 1rem;
+        margin-bottom: 18px;
+    }
+
+    .horario i, .localizacao i {
+        font-size: 1.2rem;
+    }
+
+    .contato-info {
+        padding: 40px 30px;
+    }
+
+    .contato-info h3 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+    .contato-info > p {
+        font-size: 1.1rem;
+        margin-bottom: 35px;
+    }
+
+    footer {
+        padding: 50px 0 25px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    .footer-logo {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+
+    .footer-logo h2 {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-logo p {
+        font-size: 1rem;
+    }
+
+    .footer-links, .footer-social {
+        text-align: center;
+    }
+
+    .footer-links h3, .footer-social h3 {
+        font-size: 1.3rem;
+        margin-bottom: 18px;
+    }
+
+    .footer-links ul {
+        gap: 10px;
+    }
+
+    .footer-links a {
+        font-size: 1rem;
+    }
+
+    .social-icons {
+        gap: 20px;
+    }
+
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .footer-bottom {
+        margin-top: 40px;
+        padding-top: 25px;
+    }
+
+    .footer-bottom p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Desktop (1025px e acima) */
+@media screen and (min-width: 1025px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    /* Hero Section */
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        padding: 150px 0 100px;
+    }
+
+    /* Services Section */
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    /* About Section */
+    .sobre-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+
+    /* Areas Section */
+    .areas-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    /* Contact Section */
+    .contato-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+
+    .why-choose-us {
+        padding: 80px 0;
+    }
+
+    .reasons-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    .reason-card {
+        padding: 35px 30px;
+    }
+
+    .reason-card .icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .reason-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .reason-card p {
+        font-size: 1.1rem;
+    }
+
+    .horario, .localizacao {
+        padding: 30px 25px;
+    }
+
+    .horario h4, .localizacao h4 {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+    }
+
+    .horario p, .localizacao p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .horario i, .localizacao i {
+        font-size: 1.3rem;
+    }
+
+    .contato-info {
+        padding: 50px 40px;
+    }
+
+    .contato-info h3 {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+    }
+
+    .contato-info > p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    footer {
+        padding: 60px 0 30px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 50px;
+    }
+
+    .footer-logo {
+        text-align: left;
+    }
+
+    .footer-logo h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-logo p {
+        font-size: 1.1rem;
+    }
+
+    .footer-links, .footer-social {
+        text-align: left;
+    }
+
+    .footer-links h3, .footer-social h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .footer-links ul {
+        gap: 12px;
+    }
+
+    .footer-links a {
+        font-size: 1.1rem;
+    }
+
+    .social-icons {
+        gap: 25px;
+    }
+
+    .social-icons a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+        margin-top: 50px;
+        padding-top: 30px;
+    }
+
+    .footer-bottom p {
+        font-size: 1rem;
+    }
+}
+
+/* Common Responsive Adjustments */
+@media screen and (max-width: 1024px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 3rem 0;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .menu,
+    .btn,
+    .social-icons,
+    img:not(.logo img) {
+        display: none;
+    }
+
+    body {
+        font-size: 12pt;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+    .btn,
+    .area-card,
+    .service-card {
+        border: 2px solid currentColor;
+    }
+}
