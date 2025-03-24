@@ -2,9 +2,7 @@
 const DOM = {
     menuToggle: document.querySelector('.menu-toggle'),
     nav: document.querySelector('nav'),
-    menuLinks: document.querySelectorAll('.menu a'),
-    logo: document.querySelector('.logo'),
-    header: document.querySelector('header')
+    menuLinks: document.querySelectorAll('.menu a')
 };
 
 // Constantes
@@ -65,58 +63,6 @@ function manipularRedimensionamento(overlay) {
     });
 }
 
-// Funcionalidade de rolagem suave
-function manipularRolagemSuave(e) {
-    e.preventDefault();
-    const alvo = document.querySelector(this.getAttribute('href'));
-    if (alvo) {
-        alvo.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
-
-function manipularCliqueLogo(e) {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// Efeito de rolagem do cabeçalho
-class RolagemCabecalho {
-    constructor() {
-        if (!DOM.header) return;
-        this.ultimaRolagem = 0;
-        this.inicializar();
-    }
-
-    inicializar() {
-        window.addEventListener('scroll', () => this.manipularRolagem());
-    }
-
-    manipularRolagem() {
-        const rolagemAtual = window.pageYOffset;
-        
-        if (rolagemAtual <= 0) {
-            DOM.header.classList.remove('scroll-up');
-            return;
-        }
-        
-        if (rolagemAtual > this.ultimaRolagem && !DOM.header.classList.contains('scroll-down')) {
-            DOM.header.classList.remove('scroll-up');
-            DOM.header.classList.add('scroll-down');
-        } else if (rolagemAtual < this.ultimaRolagem && DOM.header.classList.contains('scroll-down')) {
-            DOM.header.classList.remove('scroll-down');
-            DOM.header.classList.add('scroll-up');
-        }
-        
-        this.ultimaRolagem = rolagemAtual;
-    }
-}
-
 // Eventos de toque para mobile
 class ManipuladorToque {
     constructor(overlay) {
@@ -153,31 +99,6 @@ class ManipuladorToque {
     }
 }
 
-// Carregamento preguiçoso de imagens
-class CarregadorImagens {
-    constructor() {
-        this.imagensPreguiçosas = document.querySelectorAll('img[data-src]');
-        this.inicializar();
-    }
-
-    inicializar() {
-        if (!this.imagensPreguiçosas.length) return;
-        
-        const observadorImagem = new IntersectionObserver((entradas, observador) => {
-            entradas.forEach(entrada => {
-                if (entrada.isIntersecting) {
-                    const img = entrada.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    observador.unobserve(img);
-                }
-            });
-        });
-
-        this.imagensPreguiçosas.forEach(img => observadorImagem.observe(img));
-    }
-}
-
 // Inicializar tudo quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     // Criar e armazenar overlay
@@ -204,18 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Manipular redimensionamento da janela
     manipularRedimensionamento(overlay);
 
-    // Rolagem suave para links internos
-    document.querySelectorAll('a[href^="#"]').forEach(ancora => {
-        ancora.addEventListener('click', manipularRolagemSuave);
-    });
-
-    // Manipulador de clique no logo
-    if (DOM.logo) {
-        DOM.logo.addEventListener('click', manipularCliqueLogo);
-    }
-
-    // Inicializar componentes
-    new RolagemCabecalho();
+    // Inicializar manipulador de toque
     new ManipuladorToque(overlay);
-    new CarregadorImagens();
 }); 
