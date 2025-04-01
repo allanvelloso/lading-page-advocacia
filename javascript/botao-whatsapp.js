@@ -8,7 +8,7 @@ function createWhatsAppButton() {
     // Criar o elemento do botão
     const whatsappButton = document.createElement('a');
     whatsappButton.className = 'whatsapp-float';
-    whatsappButton.href = 'https://wa.me/5500000000000'; // Substitua pelo seu número com código do país
+    whatsappButton.href = 'https://wa.me/5522997449858'; // Substitua pelo seu número com código do país
     whatsappButton.target = '_blank';
     whatsappButton.rel = 'noopener noreferrer';
     whatsappButton.innerHTML = '<i class="fab fa-whatsapp"></i>';

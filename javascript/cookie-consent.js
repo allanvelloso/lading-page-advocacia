@@ -1,12 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Verificar se o usuário já aceitou os cookies
+document.addEventListener('DOMContentLoaded', initCookieConsent);
+
+// Função principal de inicialização
+function initCookieConsent() {
     if (!localStorage.getItem('cookieConsent')) {
         createCookieConsentBanner();
     }
-});
+}
 
+// Funções de criação de elementos
 function createCookieConsentBanner() {
-    // Criar o banner
     const banner = document.createElement('div');
     banner.className = 'cookie-banner';
     banner.innerHTML = `
@@ -19,89 +21,21 @@ function createCookieConsentBanner() {
         </div>
     `;
     
-    // Adicionar estilos
-    banner.style.position = 'fixed';
-    banner.style.bottom = '0';
-    banner.style.left = '0';
-    banner.style.width = '100%';
-    banner.style.padding = '15px';
-    banner.style.backgroundColor = '#f8f8f8';
-    banner.style.boxShadow = '0 -2px 10px rgba(0, 0, 0, 0.1)';
-    banner.style.zIndex = '1000';
-    banner.style.display = 'flex';
-    banner.style.justifyContent = 'center';
-    banner.style.alignItems = 'center';
-    
-    const cookieContent = banner.querySelector('.cookie-content');
-    cookieContent.style.maxWidth = '1200px';
-    cookieContent.style.width = '100%';
-    cookieContent.style.display = 'flex';
-    cookieContent.style.flexDirection = 'column';
-    cookieContent.style.padding = '10px';
-    
-    const cookieButtons = banner.querySelector('.cookie-buttons');
-    cookieButtons.style.display = 'flex';
-    cookieButtons.style.gap = '10px';
-    cookieButtons.style.marginTop = '10px';
-    
-    const buttons = banner.querySelectorAll('button');
-    buttons.forEach(button => {
-        button.style.padding = '8px 16px';
-        button.style.border = 'none';
-        button.style.borderRadius = '4px';
-        button.style.cursor = 'pointer';
-        button.style.fontWeight = 'bold';
-    });
-    
-    const acceptButton = banner.querySelector('.cookie-accept');
-    acceptButton.style.backgroundColor = '#25d366';
-    acceptButton.style.color = 'white';
-    
-    const settingsButton = banner.querySelector('.cookie-settings');
-    settingsButton.style.backgroundColor = '#f1f1f1';
-    settingsButton.style.color = '#333';
-    
-    // Adicionar ao DOM
+    applyBannerStyles(banner);
     document.body.appendChild(banner);
     
     // Adicionar eventos
-    acceptButton.addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'accepted');
-        banner.style.display = 'none';
-    });
-    
-    settingsButton.addEventListener('click', function() {
-        showCookieSettings();
-    });
-    
-    // Responsividade para dispositivos móveis
-    window.addEventListener('resize', adjustForMobile);
-    adjustForMobile();
-    
-    function adjustForMobile() {
-        if (window.innerWidth < 768) {
-            cookieContent.style.flexDirection = 'column';
-            cookieButtons.style.flexDirection = 'column';
-            cookieButtons.style.width = '100%';
-        } else {
-            cookieContent.style.flexDirection = 'row';
-            cookieContent.style.justifyContent = 'space-between';
-            cookieContent.style.alignItems = 'center';
-            cookieButtons.style.flexDirection = 'row';
-            cookieButtons.style.marginTop = '0';
-        }
-    }
+    setupBannerEvents(banner);
 }
 
 function showCookieSettings() {
-    // Criar modal de configurações
     const modal = document.createElement('div');
     modal.className = 'cookie-settings-modal';
     modal.innerHTML = `
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Configurações de Cookies</h3>
-                <button class="close-modal">&times;</button>
+                <button class="close-modal" aria-label="Fechar">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="cookie-option">
@@ -132,65 +66,175 @@ function showCookieSettings() {
         </div>
     `;
     
-    // Adicionar estilos
-    modal.style.position = 'fixed';
-    modal.style.top = '0';
-    modal.style.left = '0';
-    modal.style.width = '100%';
-    modal.style.height = '100%';
-    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    modal.style.display = 'flex';
-    modal.style.justifyContent = 'center';
-    modal.style.alignItems = 'center';
-    modal.style.zIndex = '1001';
-    
-    const modalContent = modal.querySelector('.modal-content');
-    modalContent.style.backgroundColor = 'white';
-    modalContent.style.borderRadius = '8px';
-    modalContent.style.maxWidth = '500px';
-    modalContent.style.width = '90%';
-    modalContent.style.maxHeight = '80vh';
-    modalContent.style.overflowY = 'auto';
-    
-    const modalHeader = modal.querySelector('.modal-header');
-    modalHeader.style.display = 'flex';
-    modalHeader.style.justifyContent = 'space-between';
-    modalHeader.style.alignItems = 'center';
-    modalHeader.style.padding = '15px 20px';
-    modalHeader.style.borderBottom = '1px solid #eee';
-    
-    const closeButton = modal.querySelector('.close-modal');
-    closeButton.style.background = 'none';
-    closeButton.style.border = 'none';
-    closeButton.style.fontSize = '24px';
-    closeButton.style.cursor = 'pointer';
-    
-    const modalBody = modal.querySelector('.modal-body');
-    modalBody.style.padding = '20px';
-    
-    const cookieOptions = modal.querySelectorAll('.cookie-option');
-    cookieOptions.forEach(option => {
-        option.style.marginBottom = '15px';
-    });
-    
-    const modalFooter = modal.querySelector('.modal-footer');
-    modalFooter.style.padding = '15px 20px';
-    modalFooter.style.borderTop = '1px solid #eee';
-    modalFooter.style.textAlign = 'right';
-    
-    const saveButton = modal.querySelector('.save-preferences');
-    saveButton.style.padding = '8px 16px';
-    saveButton.style.backgroundColor = '#25d366';
-    saveButton.style.color = 'white';
-    saveButton.style.border = 'none';
-    saveButton.style.borderRadius = '4px';
-    saveButton.style.cursor = 'pointer';
-    saveButton.style.fontWeight = 'bold';
-    
-    // Adicionar ao DOM
+    applyModalStyles(modal);
     document.body.appendChild(modal);
     
     // Adicionar eventos
+    setupModalEvents(modal);
+}
+
+// Funções de aplicação de estilos
+function applyBannerStyles(banner) {
+    // Estilos do banner
+    applyStyles(banner, {
+        position: 'fixed',
+        bottom: '0',
+        left: '0',
+        width: '100%',
+        padding: '15px',
+        backgroundColor: '#f8f8f8',
+        boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)',
+        zIndex: '1000',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    });
+    
+    // Estilos do conteúdo
+    const cookieContent = banner.querySelector('.cookie-content');
+    applyStyles(cookieContent, {
+        maxWidth: '1200px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '10px'
+    });
+    
+    // Estilos dos botões
+    const cookieButtons = banner.querySelector('.cookie-buttons');
+    applyStyles(cookieButtons, {
+        display: 'flex',
+        gap: '10px',
+        marginTop: '10px'
+    });
+    
+    // Estilos comuns para todos os botões
+    const buttons = banner.querySelectorAll('button');
+    buttons.forEach(button => {
+        applyStyles(button, {
+            padding: '8px 16px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+        });
+    });
+    
+    // Estilos específicos para cada botão
+    const acceptButton = banner.querySelector('.cookie-accept');
+    applyStyles(acceptButton, {
+        backgroundColor: '#25d366',
+        color: 'white'
+    });
+    
+    const settingsButton = banner.querySelector('.cookie-settings');
+    applyStyles(settingsButton, {
+        backgroundColor: '#f1f1f1',
+        color: '#333'
+    });
+    
+    // Inicializar responsividade
+    window.addEventListener('resize', () => adjustForMobile(cookieContent, cookieButtons));
+    adjustForMobile(cookieContent, cookieButtons);
+}
+
+function applyModalStyles(modal) {
+    // Estilos do modal
+    applyStyles(modal, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: '1001'
+    });
+    
+    // Estilos do conteúdo do modal
+    const modalContent = modal.querySelector('.modal-content');
+    applyStyles(modalContent, {
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        maxWidth: '500px',
+        width: '90%',
+        maxHeight: '80vh',
+        overflowY: 'auto'
+    });
+    
+    // Estilos do cabeçalho do modal
+    const modalHeader = modal.querySelector('.modal-header');
+    applyStyles(modalHeader, {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '15px 20px',
+        borderBottom: '1px solid #eee'
+    });
+    
+    // Estilos do botão de fechar
+    const closeButton = modal.querySelector('.close-modal');
+    applyStyles(closeButton, {
+        background: 'none',
+        border: 'none',
+        fontSize: '24px',
+        cursor: 'pointer'
+    });
+    
+    // Estilos do corpo do modal
+    const modalBody = modal.querySelector('.modal-body');
+    applyStyles(modalBody, {
+        padding: '20px'
+    });
+    
+    // Estilos das opções de cookies
+    const cookieOptions = modal.querySelectorAll('.cookie-option');
+    cookieOptions.forEach(option => {
+        applyStyles(option, {
+            marginBottom: '15px'
+        });
+    });
+    
+    // Estilos do rodapé do modal
+    const modalFooter = modal.querySelector('.modal-footer');
+    applyStyles(modalFooter, {
+        padding: '15px 20px',
+        borderTop: '1px solid #eee',
+        textAlign: 'right'
+    });
+    
+    // Estilos do botão de salvar
+    const saveButton = modal.querySelector('.save-preferences');
+    applyStyles(saveButton, {
+        padding: '8px 16px',
+        backgroundColor: '#25d366',
+        color: 'white',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontWeight: 'bold'
+    });
+}
+
+// Funções de configuração de eventos
+function setupBannerEvents(banner) {
+    const acceptButton = banner.querySelector('.cookie-accept');
+    const settingsButton = banner.querySelector('.cookie-settings');
+    
+    acceptButton.addEventListener('click', function() {
+        saveCookiePreferences('accepted');
+        banner.style.display = 'none';
+    });
+    
+    settingsButton.addEventListener('click', showCookieSettings);
+}
+
+function setupModalEvents(modal) {
+    const closeButton = modal.querySelector('.close-modal');
+    const saveButton = modal.querySelector('.save-preferences');
+    
     closeButton.addEventListener('click', function() {
         document.body.removeChild(modal);
     });
@@ -199,10 +243,7 @@ function showCookieSettings() {
         const analytics = modal.querySelector('input[name="analytics"]').checked;
         const marketing = modal.querySelector('input[name="marketing"]').checked;
         
-        // Salvar preferências
-        localStorage.setItem('cookieConsent', 'custom');
-        localStorage.setItem('cookieAnalytics', analytics);
-        localStorage.setItem('cookieMarketing', marketing);
+        saveCookiePreferences('custom', analytics, marketing);
         
         // Remover banner e modal
         const banner = document.querySelector('.cookie-banner');
@@ -211,4 +252,44 @@ function showCookieSettings() {
         }
         document.body.removeChild(modal);
     });
+}
+
+// Funções utilitárias
+function applyStyles(element, styles) {
+    Object.assign(element.style, styles);
+}
+
+function adjustForMobile(cookieContent, cookieButtons) {
+    if (window.innerWidth < 768) {
+        applyStyles(cookieContent, {
+            flexDirection: 'column'
+        });
+        applyStyles(cookieButtons, {
+            flexDirection: 'column',
+            width: '100%'
+        });
+    } else {
+        applyStyles(cookieContent, {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        });
+        applyStyles(cookieButtons, {
+            flexDirection: 'row',
+            marginTop: '0'
+        });
+    }
+}
+
+function saveCookiePreferences(consentType, analytics = true, marketing = true) {
+    localStorage.setItem('cookieConsent', consentType);
+    
+    if (consentType === 'custom') {
+        localStorage.setItem('cookieAnalytics', analytics);
+        localStorage.setItem('cookieMarketing', marketing);
+    } else {
+        // Se for 'accepted', ativa todos os cookies por padrão
+        localStorage.setItem('cookieAnalytics', true);
+        localStorage.setItem('cookieMarketing', true);
+    }
 }

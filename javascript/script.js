@@ -34,47 +34,41 @@ document.addEventListener('DOMContentLoaded', function() {
     handleNavbarScroll();
 
     // Inicializar todos os módulos com tratamento de erros
-    initializeModule('Navigation', Navigation);
-    initializeModule('Testimonials', Testimonials);
-    initializeModule('Forms', Forms);
-    initializeModule('Animations', Animations);
-    initializeModule('WhatsApp', WhatsApp);
-    initializeModule('CookieConsent', CookieConsent);
-    initializeModule('ExitIntent', ExitIntent);
-    initializeModule('Performance', Performance);
-    initializeModule('GoogleMaps', GoogleMaps);
-    initializeModule('Accessibility', Accessibility);
+    const modules = {
+        'Navigation': Navigation,
+        'Testimonials': Testimonials,
+        'Forms': Forms,
+        'Animations': Animations,
+        'WhatsApp': WhatsApp,
+        'CookieConsent': CookieConsent,
+        'ExitIntent': ExitIntent,
+        'Performance': Performance,
+        'GoogleMaps': GoogleMaps,
+        'Accessibility': Accessibility
+    };
+    
+    // Inicializar módulos usando um loop
+    Object.entries(modules).forEach(([name, module]) => {
+        initializeModule(name, module);
+    });
 
-    // Rolagem suave para links de navegação
-    try {
-        implementSmoothScrolling();
-    } catch (error) {
-        console.error('Erro ao implementar rolagem suave:', error);
-    }
-
-    // Botão voltar ao topo
-    try {
-        createBackToTopButton();
-    } catch (error) {
-        console.error('Erro ao criar botão voltar ao topo:', error);
-    }
-
-    // Validação de formulário
-    try {
-        setupFormValidation();
-    } catch (error) {
-        console.error('Erro ao configurar validação de formulário:', error);
-    }
-
-    // Automação do carrossel de depoimentos
-    try {
-        setupTestimonialCarousel();
-    } catch (error) {
-        console.error('Erro ao configurar carrossel de depoimentos:', error);
-    }
+    // Inicializar funcionalidades com tratamento de erros
+    const features = [
+        { name: 'rolagem suave', fn: implementSmoothScrolling },
+        { name: 'botão voltar ao topo', fn: createBackToTopButton },
+        { name: 'validação de formulário', fn: setupFormValidation },
+        { name: 'carrossel de depoimentos', fn: setupTestimonialCarousel },
+        { name: 'carregamento preguiçoso', fn: setupLazyLoading }
+    ];
+    
+    features.forEach(feature => {
+        try {
+            feature.fn();
+        } catch (error) {
+            console.error(`Erro ao configurar ${feature.name}:`, error);
+        }
+    });
 });
-
-// Removido o código de efeito de scroll do header
 
 // Implementação de rolagem suave
 function implementSmoothScrolling() {
@@ -102,17 +96,16 @@ function createBackToTopButton() {
     backToTopBtn.style.display = 'none';
     document.body.appendChild(backToTopBtn);
     
+    // Função única para atualizar visibilidade do botão
+    const updateButtonVisibility = () => {
+        backToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    };
+    
     // Mostrar/ocultar botão com base na posição de rolagem
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopBtn.style.display = 'block';
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
-    });
+    window.addEventListener('scroll', updateButtonVisibility);
     
     // Ação de clique no botão
-    backToTopBtn.addEventListener('click', function() {
+    backToTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -124,6 +117,21 @@ function createBackToTopButton() {
 function setupFormValidation() {
     const contactForm = document.getElementById('form-contato');
     if (!contactForm) return;
+    
+    // Validadores específicos para cada tipo de campo
+    const validators = {
+        email: (value) => {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(value) ? '' : 'Por favor, insira um email válido';
+        },
+        telefone: (value) => {
+            const phonePattern = /^\(\d{2}\) \d{5}-\d{4}$/;
+            return phonePattern.test(value) ? '' : 'Formato: (99) 99999-9999';
+        },
+        required: (value) => {
+            return value.trim() ? '' : 'Este campo é obrigatório';
+        }
+    };
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -137,22 +145,26 @@ function setupFormValidation() {
         // Validar cada campo
         for (let i = 0; i < formElements.length; i++) {
             const element = formElements[i];
+            let errorMessage = '';
             
+            // Verificar campo obrigatório
             if (element.hasAttribute('required') && !element.value.trim()) {
+                errorMessage = validators.required(element.value);
                 isValid = false;
-                showError(element, 'Este campo é obrigatório');
-            } else if (element.type === 'email' && element.value) {
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(element.value)) {
-                    isValid = false;
-                    showError(element, 'Por favor, insira um email válido');
-                }
-            } else if (element.id === 'telefone' && element.value) {
-                const phonePattern = /^\(\d{2}\) \d{5}-\d{4}$/;
-                if (!phonePattern.test(element.value)) {
-                    isValid = false;
-                    showError(element, 'Formato: (99) 99999-9999');
-                }
+            } 
+            // Verificar email
+            else if (element.type === 'email' && element.value) {
+                errorMessage = validators.email(element.value);
+                if (errorMessage) isValid = false;
+            } 
+            // Verificar telefone
+            else if (element.id === 'telefone' && element.value) {
+                errorMessage = validators.telefone(element.value);
+                if (errorMessage) isValid = false;
+            }
+            
+            if (errorMessage) {
+                showError(element, errorMessage);
             }
         }
         
@@ -211,105 +223,122 @@ function setupTestimonialCarousel() {
     let currentSlide = 0;
     const slides = slider.querySelectorAll('.depoimento-card');
     const totalSlides = slides.length;
+    let slideInterval;
+    
+    // Função para atualizar slides
+    function updateSlides() {
+        slides.forEach((slide, index) => {
+            const isActive = index === currentSlide;
+            slide.style.opacity = isActive ? '1' : '0';
+            slide.style.transform = isActive ? 'translateX(0)' : 
+                                    (index < currentSlide ? 'translateX(-100%)' : 'translateX(100%)');
+        });
+    }
+    
+    // Função para avançar para o próximo slide
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlides();
+    }
+    
+    // Função para voltar ao slide anterior
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlides();
+    }
+    
+    // Função para iniciar o intervalo automático
+    function startInterval() {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+    
+    // Função para parar o intervalo automático
+    function stopInterval() {
+        clearInterval(slideInterval);
+    }
     
     // Configurar slides iniciais
     updateSlides();
     
     // Controles manuais
-    prevBtn.addEventListener('click', function() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlides();
-    });
-    
-    nextBtn.addEventListener('click', function() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlides();
-    });
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
     
     // Automação do carrossel
-    let slideInterval = setInterval(function() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlides();
-    }, 5000);
+    startInterval();
     
     // Pausar automação ao passar o mouse
-    slider.addEventListener('mouseenter', function() {
-        clearInterval(slideInterval);
-    });
-    
-    slider.addEventListener('mouseleave', function() {
-        slideInterval = setInterval(function() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlides();
-        }, 5000);
-    });
-    
-    function updateSlides() {
-        slides.forEach((slide, index) => {
-            if (index === currentSlide) {
-                slide.style.opacity = '1';
-                slide.style.transform = 'translateX(0)';
-            } else {
-                slide.style.opacity = '0';
-                slide.style.transform = index < currentSlide ? 'translateX(-100%)' : 'translateX(100%)';
-            }
-        });
-    }
+    slider.addEventListener('mouseenter', stopInterval);
+    slider.addEventListener('mouseleave', startInterval);
 }
 
 // Configurar carregamento preguiçoso para imagens
 function setupLazyLoading() {
-    if ('loading' in HTMLImageElement.prototype) {
+    const hasNativeLazyLoad = 'loading' in HTMLImageElement.prototype;
+    const hasIntersectionObserver = 'IntersectionObserver' in window;
+    
+    // Selecionar todas as imagens com atributo data-src
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    if (!lazyImages.length) return;
+    
+    if (hasNativeLazyLoad) {
         // Navegador suporta lazy loading nativo
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => {
+        lazyImages.forEach(img => {
             img.src = img.dataset.src;
+            img.loading = 'lazy';
+        });
+    } else if (hasIntersectionObserver) {
+        // Usar IntersectionObserver como fallback
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const image = entry.target;
+                    image.src = image.dataset.src;
+                    observer.unobserve(image);
+                }
+            });
+        });
+        
+        lazyImages.forEach(image => {
+            imageObserver.observe(image);
         });
     } else {
-        // Fallback para navegadores que não suportam
-        const lazyImages = document.querySelectorAll('img[data-src]');
+        // Fallback para navegadores sem suporte a IntersectionObserver
+        let lazyLoadThrottleTimeout;
         
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const image = entry.target;
-                        image.src = image.dataset.src;
-                        imageObserver.unobserve(image);
-                    }
-                });
-            });
-            
-            lazyImages.forEach(image => {
-                imageObserver.observe(image);
-            });
-        } else {
-            // Fallback para navegadores sem suporte a IntersectionObserver
-            let lazyLoadThrottleTimeout;
-            
-            function lazyLoad() {
-                if (lazyLoadThrottleTimeout) {
-                    clearTimeout(lazyLoadThrottleTimeout);
-                }
-                
-                lazyLoadThrottleTimeout = setTimeout(function() {
-                    const scrollTop = window.pageYOffset;
-                    lazyImages.forEach(function(img) {
-                        if (img.offsetTop < (window.innerHeight + scrollTop)) {
-                            img.src = img.dataset.src;
-                        }
-                    });
-                    if (lazyImages.length === 0) {
-                        document.removeEventListener('scroll', lazyLoad);
-                        window.removeEventListener('resize', lazyLoad);
-                        window.removeEventListener('orientationChange', lazyLoad);
-                    }
-                }, 20);
+        function lazyLoad() {
+            if (lazyLoadThrottleTimeout) {
+                clearTimeout(lazyLoadThrottleTimeout);
             }
             
-            document.addEventListener('scroll', lazyLoad);
-            window.addEventListener('resize', lazyLoad);
-            window.addEventListener('orientationChange', lazyLoad);
+            lazyLoadThrottleTimeout = setTimeout(function() {
+                const scrollTop = window.pageYOffset;
+                const viewportHeight = window.innerHeight;
+                
+                // Verificar cada imagem apenas uma vez
+                Array.from(lazyImages).forEach(function(img) {
+                    if (img.offsetTop < (viewportHeight + scrollTop)) {
+                        img.src = img.dataset.src;
+                        // Remover da lista após carregar
+                        lazyImages.splice(lazyImages.indexOf(img), 1);
+                    }
+                });
+                
+                // Remover listeners quando todas as imagens forem carregadas
+                if (lazyImages.length === 0) {
+                    document.removeEventListener('scroll', lazyLoad);
+                    window.removeEventListener('resize', lazyLoad);
+                    window.removeEventListener('orientationChange', lazyLoad);
+                }
+            }, 20);
         }
+        
+        // Adicionar eventos para verificar imagens
+        document.addEventListener('scroll', lazyLoad);
+        window.addEventListener('resize', lazyLoad);
+        window.addEventListener('orientationChange', lazyLoad);
+        
+        // Verificar imagens inicialmente visíveis
+        lazyLoad();
     }
 }

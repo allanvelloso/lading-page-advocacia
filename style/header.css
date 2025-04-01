@@ -1,3 +1,5 @@
+/* Header and Navigation Styles */
+
 /* Logo Styles */
 .logo {
     display: flex;
@@ -106,7 +108,10 @@ header.scrolled {
 }
 
 header.scrolled .logo img {
-    max-height: 40px;
+    padding-top: 7px;
+    max-height: 65px;
+    width: auto;
+    display: block;
 }
 
 /* Navbar Styles */
@@ -122,11 +127,11 @@ header.scrolled .logo img {
 }
 
 .nav-link:hover, .logo-link:hover {
-    color: var(--accent-color);
+    color: #ffa8a8
 }
 
 /* Smooth scrolling for the entire page */
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px; /* Compensação para o header fixo */
-} 
+}

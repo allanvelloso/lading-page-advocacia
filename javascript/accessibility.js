@@ -100,29 +100,6 @@ function setupKeyboardNavigation() {
         });
     });
     
-    // Adicionar skip link para acessibilidade
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.className = 'skip-link';
-    skipLink.textContent = 'Pular para o conteúdo principal';
-    skipLink.style.position = 'absolute';
-    skipLink.style.top = '-40px';
-    skipLink.style.left = '0';
-    skipLink.style.padding = '8px';
-    skipLink.style.zIndex = '100';
-    skipLink.style.backgroundColor = '#fff';
-    skipLink.style.transition = 'top 0.3s ease';
-    
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '0';
-    });
-    
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-    
     // Adicionar id para o conteúdo principal
     const mainContent = document.querySelector('section:first-of-type');
     if (mainContent) {

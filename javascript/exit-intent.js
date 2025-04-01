@@ -4,63 +4,81 @@
  */
 const ExitIntent = {
     init: function() {
-        this.setupExitIntent();
+        // Verificar se já foi mostrado antes de configurar
+        if (!sessionStorage.getItem('exitIntentShown')) {
+            this.setupExitIntent();
+        }
     },
     
     setupExitIntent: function() {
-        // Verificar se já foi mostrado
-        if (sessionStorage.getItem('exitIntentShown')) {
-            return;
-        }
-        
         // Detectar quando o usuário está prestes a sair da página
-        document.addEventListener('mouseleave', (e) => {
-            // Só ativar se o mouse sair pela parte superior da página
-            if (e.clientY < 5 && !sessionStorage.getItem('exitIntentShown')) {
-                this.showExitIntentPopup();
-                sessionStorage.setItem('exitIntentShown', 'true');
-            }
+        document.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+    },
+    
+    handleMouseLeave: function(e) {
+        // Só ativar se o mouse sair pela parte superior da página
+        if (e.clientY < 5 && !sessionStorage.getItem('exitIntentShown')) {
+            this.showExitIntentPopup();
+            sessionStorage.setItem('exitIntentShown', 'true');
+        }
+    },
+    
+    createElementWithStyles: function(tag, className, styles = {}) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        
+        Object.entries(styles).forEach(([property, value]) => {
+            element.style[property] = value;
         });
+        
+        return element;
+    },
+    
+    createCloseButton: function() {
+        const closeButton = this.createElementWithStyles('button', '', {
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            border: 'none',
+            background: 'none',
+            fontSize: '24px',
+            cursor: 'pointer',
+            color: '#333'
+        });
+        
+        closeButton.innerHTML = '&times;';
+        return closeButton;
     },
     
     showExitIntentPopup: function() {
-        // Criar o popup
-        const popup = document.createElement('div');
-        popup.className = 'exit-intent-popup';
-        popup.style.position = 'fixed';
-        popup.style.top = '0';
-        popup.style.left = '0';
-        popup.style.width = '100%';
-        popup.style.height = '100%';
-        popup.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-        popup.style.display = 'flex';
-        popup.style.justifyContent = 'center';
-        popup.style.alignItems = 'center';
-        popup.style.zIndex = '10000';
+        // Criar o popup usando o método auxiliar
+        const popup = this.createElementWithStyles('div', 'exit-intent-popup', {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: '10000'
+        });
         
         // Conteúdo do popup
-        const content = document.createElement('div');
-        content.className = 'exit-popup-content';
-        content.style.backgroundColor = 'white';
-        content.style.borderRadius = '8px';
-        content.style.padding = '30px';
-        content.style.maxWidth = '500px';
-        content.style.width = '90%';
-        content.style.textAlign = 'center';
-        content.style.position = 'relative';
-        content.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+        const content = this.createElementWithStyles('div', 'exit-popup-content', {
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            padding: '30px',
+            maxWidth: '500px',
+            width: '90%',
+            textAlign: 'center',
+            position: 'relative',
+            boxShadow: '0 5px 20px rgba(0, 0, 0, 0.3)'
+        });
         
         // Botão de fechar
-        const closeButton = document.createElement('button');
-        closeButton.innerHTML = '&times;';
-        closeButton.style.position = 'absolute';
-        closeButton.style.top = '10px';
-        closeButton.style.right = '10px';
-        closeButton.style.border = 'none';
-        closeButton.style.background = 'none';
-        closeButton.style.fontSize = '24px';
-        closeButton.style.cursor = 'pointer';
-        closeButton.style.color = '#333';
+        const closeButton = this.createCloseButton();
         
         // Conteúdo interno
         content.innerHTML += `
@@ -89,18 +107,29 @@ const ExitIntent = {
         // Adicionar ao DOM
         document.body.appendChild(popup);
         
-        // Adicionar evento de fechar
-        closeButton.addEventListener('click', () => {
-            popup.remove();
-        });
+        // Configurar eventos de fechamento
+        this.setupCloseEvents(popup, closeButton);
+        
+        // Configurar processamento do formulário
+        this.setupFormProcessing();
+    },
+    
+    setupCloseEvents: function(popup, closeButton) {
+        // Função de fechamento reutilizável
+        const removePopup = () => popup.remove();
+        
+        // Adicionar evento de fechar ao botão
+        closeButton.addEventListener('click', removePopup);
         
         // Fechar ao clicar fora
         popup.addEventListener('click', (e) => {
             if (e.target === popup) {
-                popup.remove();
+                removePopup();
             }
         });
-        
+    },
+    
+    setupFormProcessing: function() {
         // Processar formulário
         const form = document.getElementById('exit-intent-form');
         if (form) {
@@ -111,3 +140,8 @@ const ExitIntent = {
                 // Por exemplo, enviar os dados para um servidor
                 
                 // Mostrar mensagem de sucesso
+                // TODO: Implementar lógica de processamento do formulário
+            });
+        }
+    }
+};

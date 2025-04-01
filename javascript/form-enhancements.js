@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Melhorar formulários com validação em tempo real
     enhanceForms();
+    // Adicionar estilos CSS globais para formulários
+    addFormStyles();
 });
 
 function enhanceForms() {
@@ -12,42 +14,8 @@ function enhanceForms() {
         
         const inputs = form.querySelectorAll('input, select, textarea');
         
-        inputs.forEach(input => {
-            // Adicionar validação em tempo real
-            input.addEventListener('blur', validateInput);
-            input.addEventListener('input', function() {
-                if (this.classList.contains('error')) {
-                    validateInput.call(this);
-                }
-            });
-            
-            // Adicionar máscara para campos específicos
-            if (input.id === 'telefone' || input.name === 'telefone') {
-                input.addEventListener('input', applyPhoneMask);
-            }
-        });
-        
-        // Validar formulário no envio
-        form.addEventListener('submit', function(e) {
-            let isValid = true;
-            
-            inputs.forEach(input => {
-                if (input.hasAttribute('required') && !validateInput.call(input)) {
-                    isValid = false;
-                }
-            });
-            
-            if (!isValid) {
-                e.preventDefault();
-                // Focar no primeiro campo com erro
-                const firstError = form.querySelector('.error');
-                if (firstError) firstError.focus();
-            } else {
-                // O formulário é válido, permitir o envio normal
-                // Mostrar feedback visual após envio bem-sucedido
-                showLoadingIndicator(form);
-            }
-        });
+        // Configurar validação e máscaras para todos os inputs
+        setupInputValidation(form, inputs);
         
         // Adicionar indicadores visuais para campos obrigatórios
         addRequiredFieldIndicators(form);
@@ -55,6 +23,53 @@ function enhanceForms() {
         // Adicionar contador de caracteres para campos de texto longos
         addCharacterCounter(form);
     });
+}
+
+// Função para configurar validação de inputs
+function setupInputValidation(form, inputs) {
+    inputs.forEach(input => {
+        // Adicionar validação em tempo real
+        input.addEventListener('blur', validateInput);
+        input.addEventListener('input', function() {
+            // Só validar durante digitação se já estiver marcado como erro
+            if (this.classList.contains('error')) {
+                validateInput.call(this);
+            }
+            
+            // Aplicar máscara para telefone
+            if ((this.id === 'telefone' || this.name === 'telefone')) {
+                applyPhoneMask.call(this);
+            }
+        });
+    });
+    
+    // Validar formulário no envio
+    form.addEventListener('submit', function(e) {
+        const isValid = validateForm(form, inputs);
+        
+        if (!isValid) {
+            e.preventDefault();
+            // Focar no primeiro campo com erro
+            const firstError = form.querySelector('.error');
+            if (firstError) firstError.focus();
+        } else {
+            // O formulário é válido, mostrar indicador de carregamento
+            showLoadingIndicator(form);
+        }
+    });
+}
+
+// Função para validar todo o formulário
+function validateForm(form, inputs) {
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (input.hasAttribute('required') && !validateInput.call(input)) {
+            isValid = false;
+        }
+    });
+    
+    return isValid;
 }
 
 // Função para validar campos de entrada
@@ -91,64 +106,65 @@ function validateInput() {
         }
     }
     
-    // Mostrar erro se necessário
+    // Mostrar erro se necessário ou marcar como válido
     if (!isValid) {
-        this.classList.add('error');
-        
-        // Criar ou atualizar mensagem de erro
-        let errorDiv = this.nextElementSibling;
-        if (!errorDiv || !errorDiv.classList.contains('error-message')) {
-            errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            this.parentNode.insertBefore(errorDiv, this.nextSibling);
-        }
-        
-        errorDiv.textContent = errorMessage;
-        errorDiv.style.color = '#ffa8a8'; // Alterado de 'red' para '#ffa8a8' (cor secundária)
-        errorDiv.style.fontSize = '12px';
-        errorDiv.style.marginTop = '5px';
-    } else {
-        // Adicionar indicador visual de campo válido
-        if (this.value.trim()) {
-            this.classList.add('valid');
-        }
+        showInputError(this, errorMessage);
+    } else if (this.value.trim()) {
+        this.classList.add('valid');
     }
     
     return isValid;
 }
 
-// Função para aplicar máscara de telefone
-function applyPhoneMask(e) {
-    let value = e.target.value.replace(/\D/g, '');
+// Função para mostrar erro de input
+function showInputError(input, errorMessage) {
+    input.classList.add('error');
+    
+    // Criar ou atualizar mensagem de erro
+    let errorDiv = input.nextElementSibling;
+    if (!errorDiv || !errorDiv.classList.contains('error-message')) {
+        errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+    }
+    
+    errorDiv.textContent = errorMessage;
+    errorDiv.style.color = '#ffa8a8';
+    errorDiv.style.fontSize = '12px';
+    errorDiv.style.marginTop = '5px';
+}
+
+// Função para aplicar máscara de telefone (otimizada)
+function applyPhoneMask() {
+    let value = this.value.replace(/\D/g, '');
     
     if (value.length > 0) {
-        value = '(' + value;
-        
-        if (value.length > 3) {
-            value = value.substring(0, 3) + ') ' + value.substring(3);
-        }
-        
-        if (value.length > 10) {
-            value = value.substring(0, 10) + '-' + value.substring(10, 14);
+        // Aplicar formatação em uma única operação
+        if (value.length <= 2) {
+            value = '(' + value;
+        } else if (value.length <= 7) {
+            value = '(' + value.substring(0, 2) + ') ' + value.substring(2);
+        } else {
+            value = '(' + value.substring(0, 2) + ') ' + value.substring(2, 7) + '-' + value.substring(7, 11);
         }
     }
     
-    e.target.value = value;
+    this.value = value;
 }
 
 // Função para adicionar indicadores de campos obrigatórios
 function addRequiredFieldIndicators(form) {
     const requiredInputs = form.querySelectorAll('[required]');
+    const indicator = document.createElement('span');
+    indicator.className = 'required-indicator';
+    indicator.textContent = ' *';
+    indicator.style.color = '#ffa8a8';
     
     requiredInputs.forEach(input => {
         const label = form.querySelector(`label[for="${input.id}"]`);
         
         if (label && !label.querySelector('.required-indicator')) {
-            const indicator = document.createElement('span');
-            indicator.className = 'required-indicator';
-            indicator.textContent = ' *';
-            indicator.style.color = '#ffa8a8'; // Mudando a cor para rosa/salmão (var(--secondary-color))
-            label.appendChild(indicator);
+            label.appendChild(indicator.cloneNode(true));
         }
     });
 }
@@ -158,14 +174,13 @@ function addCharacterCounter(form) {
     const textareas = form.querySelectorAll('textarea');
     
     textareas.forEach(textarea => {
-        // Definir limite de caracteres (pode ser personalizado por atributo)
+        // Definir limite de caracteres
         const maxLength = textarea.getAttribute('maxlength') || 500;
         textarea.setAttribute('maxlength', maxLength);
         
         // Criar contador
         const counter = document.createElement('div');
         counter.className = 'character-counter';
-        counter.textContent = `0/${maxLength} caracteres`;
         counter.style.fontSize = '12px';
         counter.style.textAlign = 'right';
         counter.style.marginTop = '5px';
@@ -174,46 +189,51 @@ function addCharacterCounter(form) {
         // Inserir após o textarea
         textarea.parentNode.insertBefore(counter, textarea.nextSibling);
         
-        // Atualizar contador ao digitar
-        textarea.addEventListener('input', function() {
+        // Função para atualizar contador
+        const updateCounter = function() {
             const count = this.value.length;
             counter.textContent = `${count}/${maxLength} caracteres`;
-            
-            // Mudar cor quando estiver próximo do limite
-            if (count > maxLength * 0.9) {
-                counter.style.color = 'orange';
-            } else {
-                counter.style.color = '#666';
-            }
-        });
+            counter.style.color = count > maxLength * 0.9 ? 'orange' : '#666';
+        };
+        
+        // Inicializar contador e adicionar evento
+        updateCounter.call(textarea);
+        textarea.addEventListener('input', updateCounter);
     });
 }
 
 // Função para mostrar feedback de envio
 function showSubmissionFeedback(form) {
+    // Criar elementos usando fragment para melhor performance
+    const fragment = document.createDocumentFragment();
+    
     // Criar overlay de feedback
     const overlay = document.createElement('div');
     overlay.className = 'form-feedback-overlay';
-    overlay.style.position = 'fixed';
-    overlay.style.top = '0';
-    overlay.style.left = '0';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    overlay.style.display = 'flex';
-    overlay.style.justifyContent = 'center';
-    overlay.style.alignItems = 'center';
-    overlay.style.zIndex = '9999';
+    Object.assign(overlay.style, {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: '9999'
+    });
     
     // Criar conteúdo do feedback
     const content = document.createElement('div');
     content.className = 'form-feedback-content';
-    content.style.backgroundColor = 'white';
-    content.style.padding = '30px';
-    content.style.borderRadius = '8px';
-    content.style.textAlign = 'center';
-    content.style.maxWidth = '400px';
-    content.style.width = '90%';
+    Object.assign(content.style, {
+        backgroundColor: 'white',
+        padding: '30px',
+        borderRadius: '8px',
+        textAlign: 'center',
+        maxWidth: '400px',
+        width: '90%'
+    });
     
     // Ícone de sucesso
     const icon = document.createElement('div');
@@ -235,35 +255,33 @@ function showSubmissionFeedback(form) {
     // Botão de fechar
     const closeButton = document.createElement('button');
     closeButton.textContent = 'Fechar';
-    closeButton.style.padding = '10px 20px';
-    closeButton.style.backgroundColor = '#25d366';
-    closeButton.style.color = 'white';
-    closeButton.style.border = 'none';
-    closeButton.style.borderRadius = '4px';
-    closeButton.style.cursor = 'pointer';
-    
-    // Montar estrutura
-    content.appendChild(icon);
-    content.appendChild(message);
-    content.appendChild(subMessage);
-    content.appendChild(closeButton);
-    overlay.appendChild(content);
-    
-    // Adicionar ao DOM
-    document.body.appendChild(overlay);
-    
-    // Adicionar evento de fechar
-    closeButton.addEventListener('click', function() {
-        document.body.removeChild(overlay);
-        form.reset();
+    Object.assign(closeButton.style, {
+        padding: '10px 20px',
+        backgroundColor: '#25d366',
+        color: 'white',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer'
     });
     
-    // Fechar ao clicar fora
+    // Montar estrutura
+    content.append(icon, message, subMessage, closeButton);
+    overlay.appendChild(content);
+    fragment.appendChild(overlay);
+    
+    // Adicionar ao DOM
+    document.body.appendChild(fragment);
+    
+    // Função para fechar e resetar
+    const closeOverlay = function() {
+        document.body.removeChild(overlay);
+        form.reset();
+    };
+    
+    // Adicionar eventos de fechar
+    closeButton.addEventListener('click', closeOverlay);
     overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-            document.body.removeChild(overlay);
-            form.reset();
-        }
+        if (e.target === overlay) closeOverlay();
     });
 }
 
@@ -329,28 +347,25 @@ function setupFormSubmission(form) {
     form.setAttribute('action', 'https://formsubmit.co/advlidiazaniboni@gmail.com');
     form.setAttribute('method', 'POST');
     
-    // Adicionar campos ocultos para configuração do FormSubmit
+    // Criar e adicionar campos ocultos em uma única operação
+    const hiddenFields = [
+        { name: '_next', value: window.location.href },
+        { name: '_captcha', value: 'false' },
+        { name: '_subject', value: 'Novo contato do site - Lidia Zaniboni Advogados' }
+    ];
     
-    // Campo para URL de redirecionamento após envio
-    const redirectInput = document.createElement('input');
-    redirectInput.type = 'hidden';
-    redirectInput.name = '_next';
-    redirectInput.value = window.location.href;
-    form.appendChild(redirectInput);
+    // Usar fragment para melhor performance
+    const fragment = document.createDocumentFragment();
     
-    // Desativar captcha (opcional)
-    const captchaInput = document.createElement('input');
-    captchaInput.type = 'hidden';
-    captchaInput.name = '_captcha';
-    captchaInput.value = 'false';
-    form.appendChild(captchaInput);
+    hiddenFields.forEach(field => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = field.name;
+        input.value = field.value;
+        fragment.appendChild(input);
+    });
     
-    // Nome do formulário para identificação no email
-    const formNameInput = document.createElement('input');
-    formNameInput.type = 'hidden';
-    formNameInput.name = '_subject';
-    formNameInput.value = 'Novo contato do site - Lidia Zaniboni Advogados';
-    form.appendChild(formNameInput);
+    form.appendChild(fragment);
 }
 
 // Função para mostrar indicador de carregamento
