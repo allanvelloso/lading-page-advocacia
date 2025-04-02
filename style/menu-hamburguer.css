@@ -1,0 +1,119 @@
+/* Estilos para o ícone do hamburguer */
+.hamburger-icon {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 1000;
+}
+
+.hamburger-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #333;
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.hamburger-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.hamburger-icon span:nth-child(2) {
+    top: 10px;
+}
+
+.hamburger-icon span:nth-child(3) {
+    top: 20px;
+}
+
+/* Animação do ícone quando ativo */
+.hamburger-icon.active span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+}
+
+.hamburger-icon.active span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+.hamburger-icon.active span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
+}
+
+/* Media query para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    /* Mostrar o ícone do hamburguer */
+    .hamburger-icon {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    /* Estilizar o menu para dispositivos móveis */
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #1a1a1a;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        padding: 80px 20px 20px;
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .menu.active {
+        right: 0;
+    }
+    
+    /* Estilizar os itens do menu */
+    .menu li {
+        margin-bottom: 15px;
+        width: 100%;
+        display: block;
+    }
+    
+    .menu a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 0;
+        transition: color 0.3s ease;
+        width: 100%;
+        text-align: left;
+    }
+    
+    .menu a:hover {
+        color: #f8c300; /* Cor de destaque ao passar o mouse */
+    }
+    
+    /* Overlay para quando o menu estiver aberto */
+    body.menu-open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+    }
+}

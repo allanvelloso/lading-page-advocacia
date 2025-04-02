@@ -1,0 +1,312 @@
+/* Footer Styling */
+footer {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 25px 0 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Informações de Contato */
+.footer-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-item i {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+.contact-item p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Área de Atuação */
+.footer-areas {
+    max-width: 250px;
+}
+
+.footer-areas h3 {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-areas h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+.areas-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.areas-list li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.areas-list li:before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.areas-list a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.areas-list a:hover {
+    color: var(--secondary-color);
+}
+
+/* Logo */
+.footer-logo {
+    text-align: right;
+}
+
+.logo-footer {
+    max-width: 150px;
+    height: auto;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: flex-start;
+}
+
+.social-icons a {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #fff;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.social-icons a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-button i {
+    font-size: 1.2rem;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 992px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-logo {
+        text-align: center;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .footer-areas, .footer-contact-info {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .footer-contact-info {
+        align-items: center;
+    }
+}
+
+/* Novas seções para o footer */
+.footer-newsletter {
+    max-width: 250px;
+}
+
+.footer-newsletter h3 {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-newsletter h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.newsletter-form button {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #c9a063;
+}
+
+.footer-hours {
+    max-width: 250px;
+}
+
+.footer-hours h3 {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-hours h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+.hours-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hours-list li {
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Atualização para o layout responsivo */
+@media screen and (max-width: 992px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-logo {
+        text-align: center;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    
+    .footer-areas, .footer-contact-info, .footer-newsletter, .footer-hours {
+        width: 100%;
+        max-width: 100%;
+    }
+}

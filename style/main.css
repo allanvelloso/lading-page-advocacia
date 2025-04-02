@@ -6,6 +6,7 @@
 @import 'sections.css';
 @import 'forms.css';
 @import 'footer.css';
+@import 'menu-hamburguer.css';
 
 /* Variables - Consolidado */
 :root {
@@ -114,7 +115,7 @@ header.scrolled .menu-toggle i {
 .logo {
     flex: 0 0 auto;
     max-width: 300px;
-    height: 80px;
+    height: 50px;
     display: flex;
     align-items: center;
     margin-bottom: 2px;
@@ -129,6 +130,7 @@ header.scrolled .menu-toggle i {
     max-height: 100%;
     width: auto;
     display: block;
+    transform: scale(1.50);
 }
 
 .logo h1 {
@@ -237,10 +239,12 @@ section {
 }
 
 .hero-image img {
+    max-width: 100%;
     width: 40%;
     margin: 0 auto;
     display: block;
     border-radius: 8px;
+    height: auto;
 }
 
 /* Services Section */
@@ -472,6 +476,7 @@ footer {
     padding: 60px 0 20px;
 }
 
+
 .footer-content {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -484,10 +489,35 @@ footer {
     margin-bottom: 1rem;
 }
 
+.logo-footer {
+    display: none;
+}
+
 .footer-links h3,
 .footer-social h3 {
     color: var(--secondary-color);
     margin-bottom: 1.5rem;
+}
+
+.footer-links-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.footer-links-column li {
+    margin-bottom: 5px;
+}
+
+.footer-links-column a {
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.footer-links-column a:hover {
+    color: var(--secondary-color);
+    transform: translateX(5px);
 }
 
 .footer-links ul li {
@@ -525,7 +555,12 @@ footer {
 }
 
 /* Responsive Images */
-img {
+.logo-img {
+    max-width: 150px;
+    height: auto;
+}
+
+.hero-img {
     max-width: 100%;
     height: auto;
 }
@@ -797,7 +832,14 @@ input.error, textarea.error, select.error {
     transform: translateY(-3px);
 }
 
-/* Base styles for full width and proper box model */
+/* Substituir larguras fixas por unidades relativas */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Em vez de width: 1200px */
+    margin: 0 auto;
+}
+
+
 html, body {
     width: 100%;
     min-height: 100vh;

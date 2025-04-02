@@ -11,13 +11,19 @@
     <link rel="preload" href="./style/main.css" as="style">
     <link rel="preload" href="./js/menu.js" as="script">
     
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="./style/header.css">
     <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/improvements.css">
-    <link rel="stylesheet" href="./style/responsive.css">
-    <link rel="stylesheet" href="./style/hamburger-menu.css">
+    <link rel="stylesheet" href="./menu-hamburguer.css">
     <link rel="stylesheet" href="./style/estrategia.css">
+    <link rel="stylesheet" href="./style/responsividade.css">
+    <link rel="stylesheet" href="./style/footer.css">
+  
+    <!-- Remove duplicate reference -->
+
+    
     <!-- Removed duplicate main.css reference -->
     
     <!-- External resources -->
@@ -29,14 +35,17 @@
         <div class="container">
             <div class="logo">
                 <a href="#home" class="logo-link" aria-label="Voltar ao início">
-                    <img src="./images/logonavbar.png" alt="Logo Lidia Zaniboni & Advogados Associados" width="150" height="50" loading="eager">
+                    <!-- Para o logo na navbar -->
+                    <img src="./images/logonavbar.png" alt="Logo Lidia Zaniboni & Advogados Associados" class="logo-img" loading="eager">
+                  
                 </a>
             </div>
-            <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="menu">
+            <!-- Update the hamburger button to match our CSS class -->
+            <div class="hamburger-icon">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
+            </div>
             <nav role="navigation" aria-label="Menu principal">
                 <ul class="menu" id="menu">
                     <li><a href="#home" class="nav-link" aria-current="page">Início</a></li>
@@ -57,10 +66,10 @@
                     <div class="hero-text">
                         <h1>Justiça.<br>Compromisso.<br><span class="highlight">Excelência.</span></h1>
                         <p>Defendendo seus direitos com ética e dedicação.</p>
-                        <a href="#contato" class="btn" aria-label="Solicitar consultoria inicial gratuita">Consultoria Inicial Gratuita</a>
+                        <a href="#contato" class="btn" aria-label="Solicitar consultoria inicial">Consultoria Inicial</a>
                     </div>
                     <div class="hero-image">
-                        <img src="./images/imageminicio.png" alt="Advogado profissional em ambiente de trabalho" width="500" height="400" loading="eager">
+                        <img src="./images/imageminicio.png" alt="Advogado profissional em ambiente de trabalho">
                     </div>
                 </div>
             </div>
@@ -215,7 +224,7 @@
                             <h3>Dra. Lidia Zaniboni</h3>
                             <p>Advogada Especialista</p>
                             <div class="sobre-advogado">
-                                <p>Com mais de 15 anos de experiência no mercado jurídico, a Dra. Lidia Zaniboni tem se destacado por sua dedicação e excelência no atendimento aos clientes. Sua formação acadêmica sólida e constante atualização nas mais recentes mudanças legislativas garantem um serviço jurídico de alta qualidade.</p>
+                                <p>Com anos de experiência no mercado jurídico, a Dra. Lidia Zaniboni tem se destacado por sua dedicação e excelência no atendimento aos clientes. Sua formação acadêmica sólida e constante atualização nas mais recentes mudanças legislativas garantem um serviço jurídico de alta qualidade.</p>
                                 <p>Especialista em diversas áreas do direito, a Dra. Lidia tem um histórico comprovado de sucesso em casos complexos, sempre priorizando a ética e a transparência em sua atuação. Seu compromisso com a excelência e o atendimento personalizado tem conquistado a confiança de inúmeros clientes ao longo de sua carreira.</p>
                             </div>
                             <div class="social-icons">
@@ -332,7 +341,7 @@
                         </div>
                     </div>
                     <div class="contato-form">
-                        <form id="form-contato" novalidate>
+                        <form id="form-" novalidate>
                             <div class="form-group">
                                 <label for="nome">Nome Completo</label>
                                 <input type="text" id="nome" name="nome" required autocomplete="name">
@@ -371,31 +380,54 @@
     <footer role="contentinfo">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <h2>Lidia Zaniboni & Advogados Associados</h2>
-                    <p>Advocacia especializada em soluções jurídicas eficientes</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Links Rápidos</h3>
-                    <nav aria-label="Links do rodapé">
-                        <ul>
-                            <li><a href="#home">Início</a></li>
-                            <li><a href="#sobre">Sobre</a></li>
-                            <li><a href="#areas">Áreas de Atuação</a></li>
-                            <li><a href="#advogados">Sobre mim</a></li>
-                            <li><a href="#depoimentos">Depoimentos</a></li>
-                            <li><a href="#contato">Contato</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="footer-social">
-                    <h3>Redes Sociais</h3>
+                <div class="footer-contact-info">
+                    <h3></h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Av. John Keneddy, 82, Sobreloja 19 - Centro, Araruama-RJ</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p><a href="tel:22997449858">(22) 99744-9858</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="mailto:contato@advlidiazaniboni.com">contato@advlidiazaniboni.com</a></p>
+                    </div>
+                    <!-- Mantendo apenas este conjunto de ícones sociais -->
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
+                </div>
+                
+                <div class="footer-areas">
+                    <h3>Áreas de Atuação</h3>
+                    <ul class="areas-list">
+                        <li><a href="#areas">Direito Civil</a></li>
+                        <li><a href="#areas">Direito do Consumidor</a></li>
+                        <li><a href="#areas">Direito de Família</a></li>
+                        <li><a href="#areas">Direito Imobiliário</a></li>
+                        <li><a href="#areas">Direito Previdenciário</a></li>
+                        <li><a href="#areas">Direito Trabalhista</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-hours">
+                    <h3>Horário de Atendimento</h3>
+                    <ul class="hours-list">
+                        <li><span>Segunda - Sexta:</span> <span>9:00 - 18:00</span></li>
+                        <li><span>Sábado:</span> <span>9:00 - 12:00</span></li>
+                        <li><span>Domingo:</span> <span>Fechado</span></li>
+                    </ul>
+                    <p style="font-size: 0.75rem; margin-top: 8px;">Agendamentos também disponíveis fora do horário comercial</p>
+                </div>
+                
+                <div class="footer-logo">
+                    <img class="logo-footer" src="images/imageminicio.png" alt="logo-footer">
+                    <!-- Removido o social-icons duplicado daqui -->
                 </div>
             </div>
             <div class="footer-bottom">
@@ -417,5 +449,7 @@
     <script src="./javascript/exit-intent.js" defer></script>
     <script src="./javascript/botao-whatsapp.js" defer></script>
     <script src="./javascript/menu.js" defer></script>
+    <!-- Fix the path to the hamburger menu JS -->
+    <script src="./menu-hamburguer.js" defer></script>
 </body>
 </html>

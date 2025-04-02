@@ -1,0 +1,287 @@
+/* Responsividade para dispositivos móveis (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    /* Ajustes no header e navegação */
+    header .container {
+        padding: 4px 50px;
+        position: relative;
+    }
+    
+    .hamburger-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    /* Ajustes na seção hero */
+    .hero .container {
+        padding: 30px 20px;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+    }
+    
+    .hero h1 {
+       font-size: 3rem;
+        text-align: center;
+    }
+    
+    .hero-text {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero-image {
+        display: none;
+    }
+    
+    /* Ajustes nos cards de serviço */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    
+    /* Ajustes na seção sobre */
+    .sobre-content {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .sobre-image {
+        display: none;
+    }
+    
+    .sobre-text {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    
+    .sobre-text p {
+        text-align: justify !important;
+        margin: 15px auto;
+        padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .sobre-text > h2 {
+        display: block;
+        width: 100%;
+        padding: 0 15px;
+        font-size: 1.5rem;
+        text-align: left !important;
+        margin: 0 0 20px 0;
+        box-sizing: border-box;
+    }
+    /* Ajustes nas estatísticas */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    /* Ajustes na seção estratégia */
+    .strategy-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .strategy-item {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .strategy-item h3 {
+        font-size: 1.3rem;
+        margin: 10px 0;
+    }
+    
+    .strategy-item p {
+        text-align: center;
+        padding: 0 15px;
+    }
+    
+    .strategy .container h2 {
+        margin-bottom: 25px;
+    }
+    
+    /* Ajustes nas áreas de atuação */
+    .areas-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Ajustes na seção advogados */
+    .advogados-grid {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .advogado-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .advogado-img {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto 20px;
+    }
+    
+    .advogado-info {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .sobre-advogado p {
+        text-align: justify;
+        padding: 0 15px;
+        margin-bottom: 15px;
+    }
+    
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 15px;
+    }
+    
+    .social-icons a {
+        font-size: 1.2rem;
+    }
+    
+    /* Ajustes nos depoimentos */
+    .depoimentos-slider {
+        flex-direction: column;
+    }
+    
+    .depoimento-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* Ajustes no footer para organização em linhas */
+    footer {
+        background-color: var(--primary-color);
+        padding: 40px 20px 20px;
+    }
+    
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+    
+    .footer-logo {
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .footer-logo img.logo-footer {
+        max-width: 100px;
+        height: auto;
+        margin: 0 auto 15px;
+        display: block;
+    }
+    
+    .footer-links {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    .footer-social {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .footer-links h3, .footer-social h3 {
+        color: #fff;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+        padding: 5px 10px;
+    }
+    
+    .footer-links a:hover {
+        color: #fff;
+    }
+    
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    .social-icons a {
+        color: #fff;
+        font-size: 1.2rem;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .footer-bottom {
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 15px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    .footer-bottom p {
+        color: #999;
+        font-size: 0.8rem;
+        margin: 0;
+    }
+    
+}
